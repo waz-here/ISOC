@@ -1,92 +1,125 @@
 # Peering & IXP Workshop (3-Day Version)
 
-> **Original outline source:** https://nsrc.org/activities/outlines/peering-ixp-en  
-> **Note:** Based on NSRC’s detailed 3-day agenda for the Peering & IXP Workshop (see: NSRC agenda page). :contentReference[oaicite:1]{index=1}
-
-## Overview
-
-This workshop is a condensed 3-day intensive course covering the fundamentals of BGP, peering models, traffic engineering, and Internet Exchange Point (IXP) operations. It is designed for network engineers, IXP operators and policy/technical staff needing a practical understanding of peering and route policy.
-
-## Objectives / Learning Outcomes
-
-By the end of this 3-day workshop participants will be able to:
-
-- Describe peering models (private peering, bi-lateral at IXPs, multilateral via route servers) and associated trade-offs.
-- Set up peering at an IXP (via a route server and bilateral).
-- Implement BGP policy (local-preference, MED, communities) to shape traffic flows.
-- Design and evaluate multihoming and transit scenarios.
-- Apply operational best practice for peering and IXP participation.
-
-## Prerequisites
-
-- Familiarity with IP routing and previous experience using BGP (i.e., not a complete introduction).
-- Terminal/SSH client access, text editor, and a lab environment with router VMs or containers.
-- Comfortable working hands-on with router configurations.
-
-## Workshop Format & Schedule
-
-Each day is structured into four sessions (~1.5 hr each) plus breaks, using the NSRC format. :contentReference[oaicite:2]{index=2}  
-Below is the day-by-day breakdown for the 3-day version:
-
-### Day 1 — Foundations & BGP Scale  
-- Session 1.1: Introduction to the Peering & IXP Workshop  
-- Session 1.2: Lab Setup (Topology, Addressing)  
-- Session 1.3: IS-IS Introduction & Lab  
-- Session 1.4: BGP Introduction, Scaling BGP  
-- Break & Wrap up  
-
-### Day 2 — Policy, Multihoming & Transit  
-- Session 2.1: BGP Attributes & Policy  
-- Session 2.2: eBGP with Transit (Lab)  
-- Session 2.3: Multihoming Introduction + Inbound Traffic Engineering  
-- Session 2.4: Private Peering (Lab)  
-- Break & Wrap up  
-
-### Day 3 — Peering, IXPs & Best Practice  
-- Session 3.1: IXP Peering (Lab)  
-- Session 3.2: Peering Policies (Lab)  
-- Session 3.3: Value of Peering (Presentation)  
-- Session 3.4: IXP Bilateral Peering (Lab) + BGP Communities  
-- Session 3.5: BGP Best Practices & Closing  
-- Wrap up and Certification  
-
-## Labs (Key exercises)
-
-- **Lab Setup** – Initial configuration of lab topology, routers, addressing plan. :contentReference[oaicite:3]{index=3}  
-- **eBGP with Transit Lab** – Using transit provider connection and configuring eBGP. :contentReference[oaicite:4]{index=4}  
-- **Private Peering Lab** – Direct peering between ASes. :contentReference[oaicite:5]{index=5}  
-- **IXP Peering Lab** – Introduce an IXP route-server, eBGP with RS. :contentReference[oaicite:6]{index=6}  
-- **Peering Policy Lab** – Apply filtering and policy in IXP context. :contentReference[oaicite:7]{index=7}  
-- **IXP Bilateral Peering Lab** – Bilateral peerings beyond route server. :contentReference[oaicite:8]{index=8}  
-
-## Slides & Reference Materials
-
-Participants should use the NSRC slide decks and lab documents alongside this outline. Example topics:  
-- “Value of Peering” presentation.  
-- “BGP Communities” presentation.  
-- RFC 8212, RFC 7454, MANRS best practice guide. :contentReference[oaicite:9]{index=9}  
-
-## Attribution & Licensing
-
-Some of the workshop material is by **Dr Philip Smith** (available at BGP4ALL) under **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**. Full terms at https://creativecommons.org/licenses/by-nc-nd/4.0/.
-
-Where indicated, NSRC workshop materials are used under their own Creative Commons licences.
-
-## How to Use This Outline
-
-1. Fork or clone this repository into your training workspace.  
-2. Map each session block to your local copies of slide decks & lab guides.  
-3. Adjust timing or emphasis depending on your audience (e.g., technical vs policy).  
-4. Prepare lab environment ahead of session (routers, VMs, connectivity).  
-5. Encourage interactive, group-based tasks during labs for best outcomes.
-
-## Provenance
-
-- NSRC detailed agenda for the 3-day version: “Peering & IXP Workshop – 3 day: Agenda”. :contentReference[oaicite:11]{index=11}  
-- NSRC list of workshop outlines. :contentReference[oaicite:12]{index=12}  
-- Lab setup documentation. :contentReference[oaicite:13]{index=13}  
+> **Original outline source:** [NSRC Peering & IXP Workshop Outline](https://nsrc.org/activities/outlines/peering-ixp-en)  
+> **Note:** Adapted from the [NSRC 3-Day Peering & IXP Workshop Agenda](https://nsrc.org/activities/agendas/en/Peering%20%26%20IXP%20Workshop%20-%203%20day/)
 
 ---
 
-If you like, I can format this outline for Markdown including a table of sessions with timeslots, and generate a printable PDF. Would you like me to do that?
-::contentReference[oaicite:14]{index=14}
+## Overview
+
+This workshop is a condensed **3-day intensive course** covering the fundamentals of BGP, peering models, traffic engineering, and Internet Exchange Point (IXP) operations.  
+It is designed for **network engineers, IXP operators, and policy/technical staff** needing a practical understanding of peering and route policy.
+
+---
+
+## Learning Outcomes
+
+By the end of this 3-day workshop participants will be able to:
+
+- Describe peering models (private, bilateral, and multilateral via route servers) and their trade-offs.
+- Configure peering at an IXP using both route servers and bilateral sessions.
+- Apply BGP policy (local-preference, MED, and communities) to influence routing.
+- Design and evaluate multihoming and transit strategies.
+- Implement operational best practices for stable BGP and IXP participation.
+
+---
+
+## Prerequisites
+
+- Familiarity with IP routing and basic BGP concepts.  
+- Access to a lab environment (routers, VMs, or containers).  
+- SSH client and text editor for configuration exercises.
+
+---
+
+## Workshop Format & Schedule
+
+Each day is divided into four 90-minute sessions with breaks between.  
+The schedule below follows the NSRC 3-day agenda structure.
+
+### **Day 1 — Foundations & BGP Scale**
+- Introduction to the Peering & IXP Workshop  
+- Lab Setup (Topology & Addressing)  
+- IS-IS Introduction & Lab  
+- BGP Introduction & Scaling BGP  
+- **Wrap-Up Discussion**
+
+### **Day 2 — Policy, Multihoming & Transit**
+- BGP Attributes & Policy  
+- eBGP with Transit (Lab)  
+- Multihoming Concepts & Inbound Traffic Engineering  
+- Private Peering (Lab)  
+- **Wrap-Up Discussion**
+
+### **Day 3 — Peering, IXPs & Best Practice**
+- IXP Peering (Lab)  
+- Peering Policy (Lab)  
+- The Value of Peering (Presentation)  
+- IXP Bilateral Peering (Lab)  
+- BGP Communities & Best Practices  
+- **Closing Session**
+
+---
+
+## Lab Exercises
+
+The following labs accompany the sessions. All material is publicly available on the NSRC website.
+
+- [Lab Setup](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/setup.html)  
+  _Initial lab environment and addressing configuration._
+- [eBGP with Transit](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/ebgp-transit.html)  
+  _Using an upstream provider and basic transit policies._
+- [Private Peering](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/private-peering.html)  
+  _Direct interconnection between two ASNs._
+- [IXP Peering](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/ixp.html)  
+  _Connecting and peering via an Internet Exchange Point._
+- [Peering Policy](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/peering-policy.html)  
+  _Applying local-preference, MED, and filtering at the IXP._
+- [IXP Bilateral Peering](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/ixp-bilateral.html)  
+  _Establishing direct bilateral peerings in addition to route-server sessions._
+
+---
+
+## Slide Decks & References
+
+Recommended NSRC slide decks to pair with this outline:
+
+- [The Value of Peering](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/slides/value-of-peering.pdf)  
+- [BGP Communities](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/slides/bgp-communities.pdf)  
+- [BGP Best Practices](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/slides/bgp-best-practices.pdf)
+
+Additional background reading:
+- [RFC 8212 — Default EBGP Route Propagation Behaviour](https://datatracker.ietf.org/doc/html/rfc8212)  
+- [RFC 7454 — BGP Operations and Security](https://datatracker.ietf.org/doc/html/rfc7454)  
+- [MANRS — Routing Security Best Practices](https://www.manrs.org/)  
+- [BCP 38 — Ingress Filtering](https://datatracker.ietf.org/doc/html/bcp38)
+
+---
+
+## Attribution & Licensing
+
+Some of the workshop material is by **Dr Philip Smith**, available at **[BGP4ALL](https://bgp4all.com/)** under a  
+**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)** licence.  
+Full terms at [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+Where referenced, NSRC workshop materials are licensed under their own Creative Commons terms.
+
+---
+
+## How to Use This Outline
+
+1. Clone or fork this repository into your training workspace.  
+2. Link each session to your local copies of slides and lab guides.  
+3. Adjust time allocation and examples for your audience (technical vs. policy).  
+4. Prepare router or container lab infrastructure in advance.  
+5. Encourage collaboration and discussion during the labs.
+
+---
+
+## Provenance
+
+- [NSRC Workshop Outline](https://nsrc.org/activities/outlines/peering-ixp-en)  
+- [NSRC 3-Day Agenda](https://nsrc.org/activities/agendas/en/Peering%20%26%20IXP%20Workshop%20-%203%20day/)  
+- [NSRC Workshop Labs](https://nsrc.org/workshops/2022/rwnog/peering-ixp/networking/peering-ixp/en/labs/)
+
+---
