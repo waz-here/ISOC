@@ -77,6 +77,7 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 - [RFC 7454 — BGP Operations and Security](https://tools.ietf.org/html/rfc7454)
 - [Old APNIC Training wiki](https://web.archive.org/web/20231128234155/https://wiki.apnictraining.net/)
 - [Topology.net file](https://bgp4all.com/pfs/training/sanog35/dynamips)
+- [Cisco CML](https://software.cisco.com/download/home/286193282/type/286326381/release/CML-Free)
 
 ---
 
