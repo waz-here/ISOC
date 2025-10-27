@@ -67,7 +67,9 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 
 ## Additional Information
 
-- [A ZIP archive of the NSRC materials](https://nsrc.org/activities/agendas/en/peering-ixp/Peering%20%26%20IXP%20Workshop%20-%205%20day.zip) 
+- [NSRC 3-day workshop agenda](https://nsrc.org/activities/agendas/en/Peering%20%26%20IXP%20Workshop%20-%203%20day/)
+- [A ZIP archive of the NSRC 3-day workshop materials](https://nsrc.org/activities/agendas/en/Peering%20%26%20IXP%20Workshop%20-%203%20day/Peering%20%26%20IXP%20Workshop%20-%203%20day.zip)
+- [A ZIP archive of the NSRC 5-day workshop materials](https://nsrc.org/activities/agendas/en/peering-ixp/Peering%20%26%20IXP%20Workshop%20-%205%20day.zip)
 - [RFC 8212 — Default External BGP (EBGP) Route Propagation Behaviour without Policies](https://tools.ietf.org/html/rfc8212)  
 - [MANRS — Internet Routing Security Best Practices](https://www.manrs.org/manrs/)  
 - [RIPE-706 — MANRS Implementation Guide](https://www.ripe.net/publications/docs/ripe-706)  
