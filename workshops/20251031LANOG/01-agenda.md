@@ -6,7 +6,6 @@ Some of the workshop material is by **Dr Philip Smith**, available at **[BGP4ALL
 Full terms at [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 Where referenced, NSRC workshop materials are licensed under their own Creative Commons terms.
----
 
 ## Time Schedule
 
