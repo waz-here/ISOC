@@ -48,7 +48,7 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 |------------|-------------------------------------|------|-------------------------------------------------------------------------------|-----------|
 | Session 2.1 | Multi-homing: Inbound Traffic Engineering <br>  Outbound Traffic Engineering | TBD  | [Inbound Traffic](https://www.bgp4all.com/pfs/_media/workshops/08-multihoming-inboundte.pdf) <br> [Outbound Traffic](https://www.bgp4all.com/pfs/_media/workshops/09-multihoming-outboundte.pdf) | |
 | Session 2.2 | Multi-homing Hands-on Lab Exercise         | TBD  |  | [Multi-homing lab](https://www.bgp4all.com/pfs/_media/workshops/08-bgp-policy.pdf)|
-| Session 2.3 | Introduction to Internet Exchange Points (IXPs) <br> Value of Peering                   | TBD  |                                                                               | <br> [Value of Peering](https://www.bgp4all.com/pfs/_media/workshops/02-value-of-peering.pdf) |
+| Session 2.3 | Introduction to Internet Exchange Points (IXPs) <br> Value of Peering                   | TBD  | <br> [Value of Peering](https://www.bgp4all.com/pfs/_media/workshops/02-value-of-peering.pdf) | |
 | Session 2.4 | IXP Hands-on Lab Exercise           | TBD  |  | [Multi-AS Lab](https://www.bgp4all.com/pfs/_media/workshops/16-ospfv2-ixp.pdf) |
 
 ---
