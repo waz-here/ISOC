@@ -19,7 +19,7 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 | Break     | 15:45 – 16:00 |
 | Session 4 | 16:00 – 17:00 |
 
----
+[Registration link](https://forms.internetsociety.org/laos-peering-technical-aspects-workshop)
 
 ## Instructors
 
