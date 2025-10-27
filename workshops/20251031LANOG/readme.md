@@ -1,7 +1,7 @@
 # Peering & IXP Workshop (3-Day Version)
 
 > **Original outline source:** [NSRC Peering & IXP Workshop Outline](https://nsrc.org/activities/outlines/peering-ixp-en)  
-> **Note:** Adapted from the [NSRC 3-Day Peering & IXP Workshop Agenda](https://nsrc.org/activities/agendas/en/Peering%20%26%20IXP%20Workshop%20-%203%20day/)
+> **Note:** Adapted from the [NSRC 5-Day Peering & IXP Workshop Agenda](https://nsrc.org/activities/agendas/en/Peering%20%26%20IXP%20Workshop%20-%203%20day/)
 
 ---
 
@@ -29,6 +29,12 @@ By the end of this 3-day workshop participants will be able to:
 - Familiarity with IP routing and basic BGP concepts.  
 - Access to a lab environment (routers, VMs, or containers).  
 - SSH client and text editor for configuration exercises.
+- We recommend the following Academy courses be completed before the start of the tutorial:
+  
+* Internet Exchange Point (IXP) 2.0 (Internet Society): [https://www.internetsociety.org/learning/ixp-2-0/](https://www.internetsociety.org/learning/ixp-2-0/)
+* Routing Fundamentals (APNIC): [https://academy.apnic.net/en/course/routing-fundamentals-course/](https://academy.apnic.net/en/course/routing-fundamentals-course/)
+* Deploying BGP (APNIC): [https://academy.apnic.net/en/virtual-labs?labId=69078](https://academy.apnic.net/en/virtual-labs?labId=69078)
+
 
 ---
 
