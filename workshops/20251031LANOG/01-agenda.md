@@ -78,6 +78,7 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 - [Old APNIC Training wiki](https://web.archive.org/web/20231128234155/https://wiki.apnictraining.net/)
 - [Topology.net file](https://bgp4all.com/pfs/training/sanog35/dynamips)
 - [Cisco CML](https://software.cisco.com/download/home/286193282/type/286326381/release/CML-Free)
+- [https://www.bcix.de/ixp/content/0/route-servers](https://www.bcix.de/ixp/content/0/route-servers)
 
 ---
 
