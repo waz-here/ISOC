@@ -36,7 +36,7 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 | Session    | Topic                                      | Inst | Presentations                                                                 | Exercises                                                                 |
 |------------|--------------------------------------------|------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | Session 1.1 | Introduction to the Peering & IXP Workshop <br> BGP Policy and Best Practices | TBD | [Internet eXchange Point (IXP)](https://apnic.foundation/wp-content/uploads/2025/09/Warren-IXPRS_BP_Value-and-BenefitsPPT_V01.pdf) <br> [Intro to peering](https://www.bgp4all.com/pfs/_media/workshops/06-peering_transit_network_design.pdf) <br> [BGP Policy](https://www.bgp4all.com/pfs/_media/workshops/04-bgp-policy.pdf) <br> [BGP Best Current Practices](https://www.bgp4all.com/pfs/_media/workshops/05-bgp-bcp.pdf)  | [Cisco IOS essentials](https://www.bgp4all.com/pfs/_media/workshops/04-ios-essentials.pdf)  | 
-| Session 1.2 | BGP Policy Control Hands-on Lab Exercise <br> Lab Setup                                   | TBD  |                                                                               | [Lab Setup](https://www.bgp4all.com/pfs/_media/workshops/01-setup.pdf) <br> [Lab Access](https://nsrc.org/activities/agendas/en/networking/peering-ixp/en/labs/lab-access.html) <br> [Address Plan](https://www.bgp4all.com/pfs/_media/workshops/ipv4-addressing-labs06-09.pdf) |
+| Session 1.2 | BGP Policy Control Hands-on Lab Exercise <br> Lab Setup                                   | TBD  |                                                                               | [Lab Setup](https://www.bgp4all.com/pfs/_media/workshops/01-setup.pdf) <br> [Lab Access](https://nsrc.org/activities/agendas/en/networking/peering-ixp/en/labs/lab-access.html) <br> [Address Plan](https://www.bgp4all.com/pfs/_media/workshops/ipv4-addressing-labs06-09.pdf) <br> [Address Plan spreadsheet](https://training-wiki.s3.ap-southeast-1.amazonaws.com/2019/bgprouting20190714-mv/address_plan_-_lab_06_to_09.xlsx) |
 | Session 1.3 | BGP Filtering Exercise                         | TBD  | | [BGP Route Filtering](https://www.bgp4all.com/pfs/_media/workshops/07-bgp-route-filtering.pdf) |
 | Session 1.4 | Introduction to Multi-homing                   | TBD  |    [Multi-homing Intro](https://www.bgp4all.com/pfs/_media/workshops/07-multihoming-introduction.pdf) |  |
 
@@ -79,6 +79,7 @@ Where referenced, NSRC workshop materials are licensed under their own Creative 
 - [Topology.net file](https://bgp4all.com/pfs/training/sanog35/dynamips)
 - [Cisco CML](https://software.cisco.com/download/home/286193282/type/286326381/release/CML-Free)
 - [https://www.bcix.de/ixp/content/0/route-servers](https://www.bcix.de/ixp/content/0/route-servers)
+- [https://academy.apnic.net/en/events?id=a0B2e000000CCMKEA4&cmdisplay=fullscreen](https://academy.apnic.net/en/events?id=a0B2e000000CCMKEA4&cmdisplay=fullscreen)
 
 ---
 
