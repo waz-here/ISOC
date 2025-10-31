@@ -3,7 +3,7 @@
 
 This guide provides essential Cisco IOS commands for verifying and troubleshooting interface, OSPF, iBGP, and eBGP configurations. Each command includes a brief explanation of its purpose.
 
-## 🔧 Interface Verification
+## Interface Verification
 
 ### `show ip interface brief`
 Displays a summary of all interfaces, their IP addresses, and their operational status (up/down).
@@ -19,7 +19,7 @@ Displays the path packets take to reach a destination, useful for identifying ro
 
 ---
 
-## 🧭 OSPF Verification
+## OSPF Verification
 
 ### `show ip ospf neighbor`
 Lists OSPF neighbors and their adjacency states (e.g., FULL, 2WAY).
@@ -32,7 +32,7 @@ Provides details about the OSPF process, including router ID, areas, and interfa
 
 ---
 
-## 🌐 BGP Verification (Modern Commands)
+## BGP Verification (Modern Commands)
 
 ### `show bgp ipv4 unicast summary`
 Displays BGP neighbor relationships, AS numbers, session states, and received prefixes.
@@ -51,7 +51,7 @@ Displays routes received from a specific BGP neighbor.
 
 ---
 
-## 🛠️ Troubleshooting Commands
+## Troubleshooting Commands
 
 ### `debug bgp ipv4 unicast`
 Enables debugging for BGP IPv4 unicast events. Use with caution in production environments.
@@ -67,7 +67,7 @@ Displays the full IP routing table, including static, connected, OSPF, and BGP r
 
 ---
 
-## 📌 Additional Checks
+## Additional Checks
 
 ### `show ip bgp`
 Legacy command to view BGP routes. Still available but replaced by `show bgp ipv4 unicast`.
