@@ -182,6 +182,8 @@ This lab uses APNIC Whois to ensure regionally relevant and trusted IRR data.
 
 
 ## Part 5 — Network Value Analysis
+Use:
+* bgp.tools
 
 Using BGP data and observation, evaluate:
 
@@ -195,6 +197,32 @@ Using BGP data and observation, evaluate:
 * Is ASN Y a high-value peering target?
 * Does it provide access to users or content?
 
+### AS10075 (Fiber@Home)
+
+* Likely characteristics:
+
+  * Higher AS Cone (transit influence)
+  * Lower Eyeball / Host value
+* Role:
+  * infrastructure provider
+
+### AS23729 (Alo Communications)
+
+* Likely characteristics:
+
+  * Higher Eyeball value (users)
+  * Moderate Peer Rank
+* Role:
+  * access / service provider
+
+### Interpretation
+
+| Metric       | AS10075      | AS23729       |
+| ------------ | ------------ | ------------- |
+| Peer Rank    | Moderate     | Moderate–High |
+| AS Cone      | Higher       | Lower         |
+| Eyeball Rank | Low          | Higher        |
+| Host Rank    | Low–Moderate | Moderate      |
 
 
 ## Part 6 — Peering Options
