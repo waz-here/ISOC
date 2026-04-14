@@ -22,7 +22,7 @@ By the end of this lab, you will be able to:
 * Make informed peering decisions based on technical and economic factors
 
 
-
+![Data Driven Peering Decision Framework](images/data%20driven%20peering%20decision%20framework.png)
 
 ## Scenario
 
