@@ -342,9 +342,15 @@ Compare:
 
 * Not all large ASNs are good peering targets
 * Infrastructure ≠ peering value
-* Always validate organisation vs ASN
 * Presence ≠ traffic exchange
 * Peering is both technical and economic
+* Always validate:
+  * organisation vs ASN
+  * policy vs reality
+  * presence vs actual routing
+
+> The goal is not to peer with *big networks*
+> The goal is to peer with *valuable networks*
 
 
 
