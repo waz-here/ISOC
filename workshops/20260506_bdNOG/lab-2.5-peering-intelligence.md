@@ -22,6 +22,8 @@ By the end of this lab, you will be able to:
 * Make informed peering decisions based on technical and economic factors
 
 
+
+
 ## Scenario
 
 You are the network engineer for a regional ISP in Bangladesh.
