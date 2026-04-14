@@ -6,7 +6,7 @@ This lab introduces a data-driven approach to peering decisions using real-world
 
 Participants will evaluate whether a network should peer with another network, where that peering should occur, and whether it is economically beneficial.
 
-This lab reflects real-world operator workflows used in Network Operator Group (NOG) environments.
+This lab reflects real-world operator workflows.
 
 
 
