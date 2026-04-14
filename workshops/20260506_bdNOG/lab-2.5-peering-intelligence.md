@@ -8,7 +8,7 @@ Participants will evaluate whether a network should peer with another network, w
 
 This lab reflects real-world operator workflows used in Network Operator Group (NOG) environments.
 
-\---
+
 
 ## Objectives
 
@@ -21,7 +21,6 @@ By the end of this lab, you will be able to:
 * Distinguish between organisation and ASN roles
 * Make informed peering decisions based on technical and economic factors
 
-\---
 
 ## Scenario
 
@@ -29,7 +28,6 @@ You are the network engineer for a regional ISP in Bangladesh.
 
 You want to optimise connectivity and reduce transit costs by evaluating peering opportunities.
 
-\---
 
 ## Scenario Assignment
 
@@ -61,9 +59,9 @@ ASN X: Regional ISP
 ASN Y: Organisation with multiple ASNs
 
 * AS10075 (Fiber@Home Ltd.)
-* AS23729 (Aamra Networks Ltd.)
+* AS23729 (Alo Communications Ltd.)
 
-\---
+
 
 ## Tools and References
 
@@ -75,7 +73,7 @@ ASN Y: Organisation with multiple ASNs
 * Peercortex: https://peercortex.org/
 * APNIC Whois: https://wq.apnic.net/static/search.html
 
-\---
+
 
 ## Part 1 — Peering Policy and ASN Identification
 
@@ -90,7 +88,7 @@ ASN Y: Organisation with multiple ASNs
 * Does ASN Y allow peering?
 * Is negotiation required?
 
-\---
+
 
 ## Part 1B — Organisation vs ASN Validation
 
@@ -111,7 +109,7 @@ An organisation may:
 * separate transit, access, and service roles
 * use different ASNs at different IXPs
 
-\---
+
 
 ## Part 2 — Identify Peering Locations
 
@@ -128,7 +126,7 @@ If not:
 * Are they geographically relevant?
 * Are they active and well populated?
 
-\---
+
 
 ## Part 3 — Routing Visibility
 
@@ -149,7 +147,7 @@ Use:
 * Does it rely on transit or peering?
 * Will traffic remain local if peered?
 
-\---
+
 
 ## Part 4 — Prefix Filtering (BGPQ4 with APNIC Whois)
 
@@ -181,7 +179,7 @@ bgpq4 -h whois.apnic.net -Jl AS23729
 
 This lab uses APNIC Whois to ensure regionally relevant and trusted IRR data.
 
-\---
+
 
 ## Part 5 — Network Value Analysis
 
@@ -197,7 +195,7 @@ Using BGP data and observation, evaluate:
 * Is ASN Y a high-value peering target?
 * Does it provide access to users or content?
 
-\---
+
 
 ## Part 6 — Peering Options
 
@@ -218,7 +216,7 @@ Using BGP data and observation, evaluate:
 * Which option is technically feasible?
 * Which is operationally simpler?
 
-\---
+
 
 ## Part 7 — Economic Evaluation
 
@@ -234,7 +232,7 @@ Estimate:
 * Is peering cost-effective?
 * Which IXP provides best value?
 
-\---
+
 
 ## Final Task — Recommendation
 
@@ -245,7 +243,7 @@ Prepare a short summary:
 * What are the expected benefits?
 * What risks exist?
 
-\---
+
 
 # Worked Example — AS10075 vs AS23729
 
@@ -257,7 +255,7 @@ Target:
 * AS10075 — Fiber@Home Ltd.
 * AS23729 — Aamra Networks Ltd.
 
-\---
+
 
 ## Analysis
 
@@ -273,14 +271,14 @@ Target:
 * Exchanges customer traffic
 * More suitable peering target
 
-\---
+
 
 ## Routing Insight
 
 * AS10075: traffic flows *through*
 * AS23729: traffic flows *to/from*
 
-\---
+
 
 ## BGPQ4 Validation
 
@@ -294,7 +292,7 @@ Compare:
 * prefix counts
 * completeness
 
-\---
+
 
 ## Decision
 
@@ -303,14 +301,14 @@ Compare:
 |AS10075|Not a priority peering target|
 |AS23729|Strong peering candidate|
 
-\---
+
 
 ## Final Recommendation
 
 * Peer with AS23729 at a shared IXP
 * Continue using AS10075 for transit where required
 
-\---
+
 
 ## Key Takeaways
 
@@ -320,7 +318,7 @@ Compare:
 * Presence ≠ traffic exchange
 * Peering is both technical and economic
 
-\---
+
 
 ## Optional Extension
 
