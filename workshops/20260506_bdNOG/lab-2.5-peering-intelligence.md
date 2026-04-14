@@ -281,7 +281,7 @@ ASN X: Regional ISP (Bangladesh)
 Target:
 
 * AS10075 — Fiber@Home Ltd.
-* AS23729 — Aamra Networks Ltd.
+* AS23729 — Alo Communications Ltd.
 
 
 
