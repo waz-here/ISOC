@@ -29,15 +29,13 @@ By the end of the workshop, participants will be able to:
 
 | Time        | Session | Topic | Format |
 |------------|--------|-------|--------|
-| 09:00–09:30 | 1.1 | Welcome and workshop overview | Presentation |
-| 09:30–10:30 | 1.2 | Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/)) | Presentation |
-| 10:30–11:00 |        | Break |        |
-| 11:00–12:30 | 1.3 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2021/ixp-toolkit/)) | Presentation + Discussion |
-| 12:30–13:30 |        | Lunch |        |
-| 13:30–15:00 | 1.4 | Economics of peering and IXPs (cost models, transit vs peering) | Presentation + Exercise |
-| 15:00–15:30 |        | Break |        |
-| 15:30–16:00 | 1.5 | Building a community IXP (stakeholders, trust, participation) | Presentation |
-| 16:00–17:00 | 1.6 | Peering fundamentals ([BGP4All](https://www.bgp4all.com/pfs/workshops/start)) | Presentation |
+| 09:30–11:00 | 1.1 | Welcome and workshop overview \\ Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| Presentation |
+| 11:00–11:30 |        | Break |        |
+| 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2021/ixp-toolkit/)) | Presentation + Discussion |
+| 13:00–14:00 |        | Lunch |        |
+| 14:00–15:30 | 1.3 | Economics of peering and IXPs (cost models, transit vs peering) | Presentation + Exercise |
+| 15:30–16:00 |        | Break |        |
+| 16:00–17:00 | 1.4 | Building a community IXP (stakeholders, trust, participation) \\ Peering fundamentals ([BGP4All](https://www.bgp4all.com/pfs/workshops/start)) | Presentation |
 
 **Day 1 Outcomes**
 - Understand the Bangladesh interconnection environment  
@@ -50,14 +48,13 @@ By the end of the workshop, participants will be able to:
 
 | Time        | Session | Topic | Format |
 |------------|--------|-------|--------|
-| 09:00–10:30 | 2.1 | IXP governance models (non-profit, cooperative, neutral operations) | Presentation |
-| 10:30–11:00 |        | Break |        |
-| 11:00–12:30 | 2.2 | Compliance and regulatory considerations (Bangladesh context) | Presentation + Discussion |
-| 12:30–13:30 |        | Lunch |        |
-| 13:30–15:00 | 2.3 | Technical design of an IXP ([NSRC IXP Design](https://nsrc.org/workshops/2026/nsrc-bknix-peeringixp/)) | Presentation |
-| 15:00–15:30 |        | Break |        |
-| 15:30–16:00 | 2.4 | Routing policy and peering ([NSRC BGP training](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/)) | Presentation + Lab |
-| 16:00–17:30 | 2.5 | Peering intelligence and decision making (tools + scenario exercise) | Demo + Lab |
+| 09:30–11:00 | 2.1 |  | Routing policy and peering ([NSRC BGP training](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/)) | Presentation + Lab |
+| 11:00–11:30 |        | Break |        |
+| 11:30–13:00 | 2.2 | IXP governance models (non-profit, cooperative, neutral operations) \\ Compliance and regulatory considerations (Bangladesh context) | Presentation + Discussion |
+| 13:00–14:00 |        | Lunch |        |
+| 14:00–15:30 | 2.3 | Technical design of an IXP ([NSRC IXP Design](https://nsrc.org/workshops/2026/nsrc-bknix-peeringixp/)) | Presentation |
+| 15:30–16:00 |        | Break |        |
+| 16:00–17:00 | 2.4 | Peering intelligence and decision making (tools + scenario exercise) | Demo + Lab |
 
 ### Session 2.5 References
 - PeeringDB tutorial: https://tutorial.peeringdb.com/  
@@ -82,14 +79,13 @@ By the end of the workshop, participants will be able to:
 
 | Time        | Session | Topic | Format |
 |------------|--------|-------|--------|
-| 09:00–10:30 | 3.1 | Documentation and source of truth (NetBox, digital twin concepts) | Presentation |
-| 10:30–11:00 |        | Break |        |
-| 11:00–12:00 | 3.2 | Minimum viable IXP operations | Presentation + Demo |
+| 09:30–11:00 | 3.1 | Documentation and source of truth (NetBox, digital twin concepts) | Presentation |
+| 11:00–11:30 |        | Break |        |
+| 11:30–12:00 | 3.2 | Minimum viable IXP operations | Presentation + Demo |
 | 12:00–14:30 |        | Friday Prayer / Extended Break |        |
-| 14:30–15:45 | 3.3 | Group exercise: Design a Bangladesh community IXP | Workshop |
-| 15:45–16:00 |        | Break |        |
-| 16:00–16:45 | 3.4 | Group presentations and feedback | Discussion |
-| 16:45–17:00 | 3.5 | Closing: Roadmap and next steps | Facilitated Discussion |
+| 14:30–16:00 | 3.3 | Group exercise: Design a Bangladesh community IXP | Workshop |
+| 16:00–16:15 |        | Break |        |
+| 16:15–17:00 | 3.4 | Group presentations and feedback \\ Closing: Roadmap and next steps  | Discussion |
 
 **Day 3 Outcomes**
 - Define operational requirements for a new IXP  
