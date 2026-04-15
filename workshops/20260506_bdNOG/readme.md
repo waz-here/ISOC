@@ -29,13 +29,13 @@ By the end of the workshop, participants will be able to:
 
 | Time        | Session | Topic | Format |
 |------------|--------|-------|--------|
-| 09:30–11:00 | 1.1 | Welcome and workshop overview \\ Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| Presentation |
+| 09:30–11:00 | 1.1 | Welcome and workshop overview <br> Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| Presentation |
 | 11:00–11:30 |        | Break |        |
 | 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2021/ixp-toolkit/)) | Presentation + Discussion |
 | 13:00–14:00 |        | Lunch |        |
 | 14:00–15:30 | 1.3 | Economics of peering and IXPs (cost models, transit vs peering) | Presentation + Exercise |
 | 15:30–16:00 |        | Break |        |
-| 16:00–17:00 | 1.4 | Building a community IXP (stakeholders, trust, participation) \\ Peering fundamentals ([BGP4All](https://www.bgp4all.com/pfs/workshops/start)) | Presentation |
+| 16:00–17:00 | 1.4 | Building a community IXP (stakeholders, trust, participation) <br> Peering fundamentals ([BGP4All](https://www.bgp4all.com/pfs/workshops/start)) | Presentation |
 
 **Day 1 Outcomes**
 - Understand the Bangladesh interconnection environment  
@@ -85,7 +85,7 @@ By the end of the workshop, participants will be able to:
 | 12:00–14:30 |        | Friday Prayer / Extended Break |        |
 | 14:30–16:00 | 3.3 | Group exercise: Design a Bangladesh community IXP | Workshop |
 | 16:00–16:15 |        | Break |        |
-| 16:15–17:00 | 3.4 | Group presentations and feedback \\ Closing: Roadmap and next steps  | Discussion |
+| 16:15–17:00 | 3.4 | Group presentations and feedback <br> Closing: Roadmap and next steps  | Discussion |
 
 **Day 3 Outcomes**
 - Define operational requirements for a new IXP  
