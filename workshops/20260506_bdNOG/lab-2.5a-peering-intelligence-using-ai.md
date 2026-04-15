@@ -252,4 +252,7 @@ Include a final section called “Operator Action Plan” with:
 
 That makes the report more actionable.
 
+# Other resources
+[https://github.com/f/prompts.chat?tab=readme-ov-file](https://github.com/f/prompts.chat?tab=readme-ov-file)
+
 ---
