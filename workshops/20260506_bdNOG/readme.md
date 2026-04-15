@@ -50,7 +50,7 @@ By the end of the workshop, participants will be able to:
 |------------|--------|-------|--------|
 | 09:30–11:00 | 2.1 |  | Routing policy and peering ([NSRC BGP training](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/)) | Presentation + Lab |
 | 11:00–11:30 |        | Break |        |
-| 11:30–13:00 | 2.2 | IXP governance models (non-profit, cooperative, neutral operations) \\ Compliance and regulatory considerations (Bangladesh context) | Presentation + Discussion |
+| 11:30–13:00 | 2.2 | IXP governance models (non-profit, cooperative, neutral operations) <br> Compliance and regulatory considerations (Bangladesh context) | Presentation + Discussion |
 | 13:00–14:00 |        | Lunch |        |
 | 14:00–15:30 | 2.3 | Technical design of an IXP ([NSRC IXP Design](https://nsrc.org/workshops/2026/nsrc-bknix-peeringixp/)) | Presentation |
 | 15:30–16:00 |        | Break |        |
