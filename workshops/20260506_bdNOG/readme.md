@@ -107,4 +107,10 @@ Where referenced, workshop materials are licensed under their own Creative Commo
 ---
 
 ## Notes
+Additional background reading:
+- [RFC 8212 — Default EBGP Route Propagation Behaviour](https://datatracker.ietf.org/doc/html/rfc8212)  
+- [RFC 7454 — BGP Operations and Security](https://datatracker.ietf.org/doc/html/rfc7454)  
+- [MANRS — Routing Security Best Practices](https://www.manrs.org/)  
+- [BCP 38 — Ingress Filtering](https://datatracker.ietf.org/doc/html/bcp38)
+
  
