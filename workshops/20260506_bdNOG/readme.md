@@ -9,9 +9,11 @@ By the end of the workshop, participants will be able to:
 
 - Explain the role of IXPs in improving Internet performance and resilience  
 - Evaluate economic and policy considerations for IXP sustainability  
-- Design a neutral and scalable IXP architecture  
+  <!-- Design a neutral and scalable IXP architecture  -->
+- Describe peering models (private, bilateral, and multilateral via route servers) and their trade-offs.
+- Configure peering at an IXP using both route servers and bilateral sessions.
 - Apply routing, filtering, and security best practices  
-- Develop a roadmap for establishing or improving an IXP in Bangladesh  
+<!-- Develop a roadmap for establishing or improving an IXP in Bangladesh  -->
 
 ---
 
@@ -24,6 +26,21 @@ By the end of the workshop, participants will be able to:
 - Content providers and network operators  
 
 ---
+
+## Prerequisites
+
+- Familiarity with IP routing and basic BGP concepts.  
+- Access to a lab environment (routers, VMs, or containers).  
+- SSH client and text editor for configuration exercises.
+
+We recommend the following free courses be completed before the start of the tutorial:
+  
+- Internet Exchange Point (IXP) 2.0 (Internet Society): [https://www.internetsociety.org/learning/ixp-2-0/](https://www.internetsociety.org/learning/ixp-2-0/)
+- BGP for All (NSRC): [https://learn.nsrc.org/bgp](https://learn.nsrc.org/bgp)
+- Routing Fundamentals (APNIC): [https://academy.apnic.net/en/course/routing-fundamentals-course/](https://academy.apnic.net/en/course/routing-fundamentals-course/)
+- Deploying BGP (APNIC): [https://academy.apnic.net/en/virtual-labs?labId=69078](https://academy.apnic.net/en/virtual-labs?labId=69078)
+
+___
 
 ## Day 1 — Context, Economics, and Community
 
