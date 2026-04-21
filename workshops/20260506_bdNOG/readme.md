@@ -95,9 +95,16 @@ By the end of the workshop, participants will be able to:
 
 ---
 
+## Attribution & Licensing
+
+Some of the workshop material is by **Dr Philip Smith**, available at **[BGP4ALL](https://bgp4all.com/)** under a  
+**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)** licence.  
+Full terms at [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+Where referenced, workshop materials are licensed under their own Creative Commons terms.
+- Training material draws from open resources including NSRC, BGP4All, and Internet Society 
 
 ---
 
 ## Notes
-
-- Training material draws from open resources including NSRC, BGP4All, and Internet Society  
+ 
