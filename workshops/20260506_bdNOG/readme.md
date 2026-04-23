@@ -48,7 +48,7 @@ ___
 |------------|--------|-------|--------|
 | 09:30–11:00 | 1.1 | Welcome and workshop overview <br> Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| Presentation |
 | 11:00–11:30 |        | Break |        |
-| 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2021/ixp-toolkit/)) | Presentation + Discussion |
+| 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2014/ixptoolkitguide/)) | Presentation + Discussion |
 | 13:00–14:00 |        | Lunch |        |
 | 14:00–15:30 | 1.3 | Economics of peering and IXPs (cost models, transit vs peering) | Presentation + Exercise |
 | 15:30–16:00 |        | Break |        |
