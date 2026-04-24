@@ -46,9 +46,9 @@ ___
 
 | Time        | Session | Topic | Inst | Presentation | Exercise |
 |------------|--------|-------|--------|--------|--------|
-| 09:30–11:00 | 1.1 | Welcome and workshop overview <br> Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| TBD |  | |
+| 09:30–11:00 | 1.1 | Welcome and workshop overview <br> Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| TBD | <br> [Internet eXchange Point (IXP)](https://apnic.foundation/wp-content/uploads/2025/09/Warren-IXPRS_BP_Value-and-BenefitsPPT_V01.pdf) <br> [Intro to peering](https://www.bgp4all.com/pfs/_media/workshops/06-peering_transit_network_design.pdf) | |
 | 11:00–11:30 |        | Break |        | | |
-| 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2014/ixptoolkitguide/)) | TBD | Presentation + Discussion | |
+| 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2014/ixptoolkitguide/)) | TBD | [Value of Peering](https://www.bgp4all.com/pfs/_media/workshops/02-value-of-peering.pdf) | |
 | 13:00–14:00 |        | Lunch |        | | |
 | 14:00–15:30 | 1.3 | Economics of peering and IXPs (cost models, transit vs peering) | TBD | Presentation + Exercise | |
 | 15:30–16:00 |        | Break |        | | |
