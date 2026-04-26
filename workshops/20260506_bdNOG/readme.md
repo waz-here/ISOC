@@ -1,128 +1,137 @@
 # Community IXP Development Workshop (Bangladesh)
+
 ## 3-Day Agenda
 
 This 3-day workshop focuses on the design, deployment, and sustainable operation of a community Internet Exchange Point (IXP) in the Bangladesh context. It combines technical foundations with governance, compliance, and economic considerations, with a strong emphasis on practical outcomes.
+
+---
 
 ## Workshop Outcomes
 
 By the end of the workshop, participants will be able to:
 
-- Explain the role of IXPs in improving Internet performance and resilience  
-- Evaluate economic and policy considerations for IXP sustainability  
-  <!-- Design a neutral and scalable IXP architecture  -->
-- Describe peering models (private, bilateral, and multilateral via route servers) and their trade-offs.
-- Configure peering at an IXP using both route servers and bilateral sessions.
-- Apply routing, filtering, and security best practices  
-<!-- Develop a roadmap for establishing or improving an IXP in Bangladesh  -->
+* Explain the role of IXPs in improving Internet performance and resilience
+* Evaluate economic and policy considerations for IXP sustainability
+* Describe and implement peering models (private, bilateral, and multilateral via route servers)
+* Configure peering at an IXP using both route servers and bilateral sessions
+* Apply routing, filtering, and security best practices
+* Use real-world data to make informed peering decisions
 
 ---
 
 ## Target Audience
 
-- Internet Service Providers (ISPs)  
-- Network engineers and architects  
-- Data centre operators  
-- Regulators and policy makers  
-- Content providers and network operators  
+* Internet Service Providers (ISPs)
+* Network engineers and architects
+* Data centre operators
+* Regulators and policy-makers
+* Content providers and network operators
 
 ---
 
 ## Prerequisites
 
-- Familiarity with IP routing and basic BGP concepts.  
-- Access to a lab environment (routers, VMs, or containers).  
-- SSH client and text editor for configuration exercises.
+* Familiarity with IP routing and basic BGP concepts
+* Access to a lab environment (routers, VMs, or containers)
+* SSH client and text editor for configuration exercises
 
-We recommend the following free courses be completed before the start of the tutorial:
-  
-- Internet Exchange Point (IXP) 2.0 (Internet Society): [https://www.internetsociety.org/learning/ixp-2-0/](https://www.internetsociety.org/learning/ixp-2-0/)
-- BGP for All (NSRC): [https://learn.nsrc.org/bgp](https://learn.nsrc.org/bgp)
-- Routing Fundamentals (APNIC): [https://academy.apnic.net/en/course/routing-fundamentals-course/](https://academy.apnic.net/en/course/routing-fundamentals-course/)
-- Deploying BGP (APNIC): [https://academy.apnic.net/en/virtual-labs?labId=69078](https://academy.apnic.net/en/virtual-labs?labId=69078)
+We recommend the following free courses be completed before the workshop:
 
-___
+* Internet Exchange Point (IXP) 2.0 (Internet Society): https://www.internetsociety.org/learning/ixp-2-0/
+* BGP for All (NSRC): https://learn.nsrc.org/bgp
+* Routing Fundamentals (APNIC): https://academy.apnic.net/en/course/routing-fundamentals-course/
+* Deploying BGP (APNIC): https://academy.apnic.net/en/virtual-labs?labId=69078
 
-## Day 1 
+---
 
-| Time        | Session | Topic | Inst | Presentation | Exercise |
-|------------|--------|-------|--------|--------|--------|
-| 09:30–11:00 | 1.1 | Welcome and workshop overview <br> Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/))| TBD | <br> [Internet eXchange Point (IXP)](https://apnic.foundation/wp-content/uploads/2025/09/Warren-IXPRS_BP_Value-and-BenefitsPPT_V01.pdf) <br> [Intro to peering](https://www.bgp4all.com/pfs/_media/workshops/06-peering_transit_network_design.pdf) | |
-| 11:00–11:30 |        | Break |        | | |
-| 11:30–13:00 | 1.2 | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2014/ixptoolkitguide/)) | TBD | [Value of Peering](https://www.bgp4all.com/pfs/_media/workshops/02-value-of-peering.pdf) | |
-| 13:00–14:00 |        | Lunch |        | | |
-| 14:00–15:30 | 1.3 | Routing policy and peering | TBD | [BGP Policy](https://nsrc.org/workshops/2026/nsrc-bknix-peeringixp/networking/bgp-deploy/en/presentations/BGP-Policy.pdf}  | |
-| 15:30–16:00 |        | Break |        | | |
-| 16:00–17:00 | 1.4 |  Peering fundamentals ([BGP4All](https://www.bgp4all.com/pfs/workshops/start)) | TBD |  | [IXP Peering lab](https://academy.apnic.net/virtual-labs?labId=145487) |
+# Day 1 — Why IXPs and Peering Matter
+
+| Time        | Session | Topic                                                                                                                                                                                                            | Inst | Presentation                                                                                                                                                                                                                                   | Exercise                                                                       |
+| ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 09:30–11:00 | 1.1     | Welcome and workshop overview <br> Bangladesh Internet landscape and interconnection challenges ([APNIC context](https://blog.apnic.net/2025/03/26/bridging-connectivity-and-collaboration-gaps-in-bangladesh/)) | TBD  | [IXP Value and Benefits](https://apnic.foundation/wp-content/uploads/2025/09/Warren-IXPRS_BP_Value-and-BenefitsPPT_V01.pdf) <br> [Introduction to Peering](https://www.bgp4all.com/pfs/_media/workshops/06-peering_transit_network_design.pdf) |                                                                                |
+| 11:00–11:30 |         | Break                                                                                                                                                                                                            |      |                                                                                                                                                                                                                                                |                                                                                |
+| 11:30–13:00 | 1.2     | Role and value of IXPs ([ISOC IXP Toolkit](https://www.internetsociety.org/resources/doc/2014/ixptoolkitguide/))                                                                                                 | TBD  | [Value of Peering (BGP4All)](https://www.bgp4all.com/pfs/_media/workshops/02-value-of-peering.pdf)                                                                                                                                             |                                                                                |
+| 13:00–14:00 |         | Lunch                                                                                                                                                                                                            |      |                                                                                                                                                                                                                                                |                                                                                |
+| 14:00–15:30 | 1.3     | Routing policy and peering                                                                                                                                                                                       | TBD  | [BGP Policy (NSRC)](https://nsrc.org/workshops/2026/nsrc-bknix-peeringixp/networking/bgp-deploy/en/presentations/BGP-Policy.pdf)                                                                                                               |                                                                                |
+| 15:30–16:00 |         | Break                                                                                                                                                                                                            |      |                                                                                                                                                                                                                                                |                                                                                |
+| 16:00–17:00 | 1.4     | Peering fundamentals ([BGP4All](https://www.bgp4all.com/pfs/workshops/start))                                                                                                                                    | TBD  |                                                                                                                                                                                                                                                | [IXP Peering Lab (APNIC)](https://academy.apnic.net/virtual-labs?labId=145487) |
 
 **Day 1 Outcomes**
-- Understand the Bangladesh interconnection environment  
-- Explain the economic and operational value of IXPs  
+
+* Understand the Bangladesh interconnection environment
+* Explain the economic and operational value of IXPs
+* Describe transit vs peering trade-offs
+* Understand basic routing policy concepts
 
 ---
 
-## Day 2 
+# Day 2 — How to Peer (Configuration and Decision-Making)
 
-| Time        | Session | Topic | Inst | Presentation | Exercise |
-|------------|--------|-------|--------|--------|--------|
-| 09:30–11:00 | 2.1   | 	Building an IXP (stakeholders, trust, participation) |  | [IXP Manager lab](https://academy.apnic.net/virtual-labs?labId=138784) | |
-| 11:00–11:30 |        | Break |        |  | |
-| 11:30–13:00 | 2.2 | Private Peer | | | [Private Peer Lab](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/labs/private.html) |
-| 13:00–14:00 |        | Lunch |        | | |
-| 14:00–15:30 | 2.3 | IXP Peering | Presentation | | [IXp Peering Lab](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/labs/ixp.html) |
-| 15:30–16:00 |        | Break |        | | |
-| 16:00–17:00 | 2.4 | Peering intelligence and decision making (tools + scenario exercise) <br>  | WF | [BGPq$ Introduction](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/presentations/BGPQ4-Introduction.pdf) | [VGPQ4 Lookup Examples](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/documents/BGPQ4-Introduction-whois-lookups.txt)  |
+| Time        | Session | Topic                                                                | Inst | Presentation                                                                                                                                      | Exercise                                                                                                                                                |
+| ----------- | ------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 09:30–11:00 | 2.1     | Building an IXP (stakeholders, trust, participation)                 | TBD  | [IXP Manager Lab (APNIC)](https://academy.apnic.net/virtual-labs?labId=138784)                                                                    |                                                                                                                                                         |
+| 11:00–11:30 |         | Break                                                                |      |                                                                                                                                                   |                                                                                                                                                         |
+| 11:30–13:00 | 2.2     | Private peering                                                      | TBD  |                                                                                                                                                   | [Private Peering Lab (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/labs/private.html)                   |
+| 13:00–14:00 |         | Lunch                                                                |      |                                                                                                                                                   |                                                                                                                                                         |
+| 14:00–15:30 | 2.3     | IXP peering                                                          | TBD  |                                                                                                                                                   | [IXP Peering Lab (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/labs/ixp.html)                           |
+| 15:30–16:00 |         | Break                                                                |      |                                                                                                                                                   |                                                                                                                                                         |
+| 16:00–17:00 | 2.4     | Peering intelligence and decision making (tools + scenario exercise) | WF   | [BGPQ4 Introduction (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/presentations/BGPQ4-Introduction.pdf) | [BGPQ4 Lookup Examples](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/documents/BGPQ4-Introduction-whois-lookups.txt) |
 
-### Session 2.5 References
-- PeeringDB tutorial: https://tutorial.peeringdb.com/  
-- BGPQ4 intro: https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/documents/BGPQ4-Introduction-whois-lookups.txt  
-- Internet Society Pulse (IXP Tracker): https://pulse.internetsociety.org/en/ixp-tracker/  
-- Cloudflare Radar: https://radar.cloudflare.com/  
-- bgproutes.io: https://www.bgproutes.io/  
-- Peercortex: https://peercortex.org/  
+### Session 2.4 References
+
+* PeeringDB tutorial: https://tutorial.peeringdb.com/
+* Internet Society Pulse (IXP Tracker): https://pulse.internetsociety.org/en/ixp-tracker/
+* Cloudflare Radar: https://radar.cloudflare.com/
+* bgproutes.io: https://www.bgproutes.io/
+* Peercortex: https://peercortex.org/
 
 **Day 2 Outcomes**
-- Apply routing and security best practices  
-- Use real-world data to make informed peering decisions  
+
+* Configure private and IXP-based peering sessions
+* Apply routing and filtering best practices
+* Use real-world data to evaluate peering opportunities
+* Make informed peering decisions using operational tools
 
 ---
 
-## Day 3 — Operations, Documentation, and Next Steps (Friday)
+# Day 3 — Operating and Securing Peering Infrastructure (Friday)
 
-**Note:** Friday schedule is adjusted to accommodate Friday prayer. 
+**Note:** Friday schedule is adjusted to accommodate Friday prayer.
 
-| Time        | Session | Topic | Inst | Presentation | Exercise |
-|------------|--------|-------|--------|--------|--------|
-| 09:30–11:00 | 3.1 | BGP Best Practices <br> Documentation and source of truth (NetBox, digital twin concepts) | WF | [PDF](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/presentations/BGP-BCP.pdf) | |
-| 11:00–11:30 |        | Break |        | | |
-| 11:30–12:00 | 3.2 | Remote Trigger Blackhole Filtering | [PDF}(https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/presentations/RTBH.pdf) | [RTBH Lab](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/labs/RTBH-local.html) |
-| 12:00–14:30 |        | Friday Prayer / Extended Break |        | | |
-| 14:30–16:00 | 3.3 | BGP Origin Validation | WF | [RPKI Theory](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/presentations/BGP-Origin-Validation.pdf) | [RPKI Deployment Lab](https://academy.apnic.net/virtual-labs?labId=174499)|
-| 16:00–16:15 |        | Break |        | | |
-| 16:15–17:00 | 3.4 | Closing: Roadmap and next steps  | Discussion | | |
+| Time        | Session | Topic                                                                                     | Inst       | Presentation                                                                                                                                        | Exercise                                                                                                                      |
+| ----------- | ------- | ----------------------------------------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 09:30–11:00 | 3.1     | BGP best practices <br> Documentation and source of truth (NetBox, digital twin concepts) | WF         | [BGP Best Practices (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/bgp-deploy/en/presentations/BGP-BCP.pdf)              |                                                                                                                               |
+| 11:00–11:30 |         | Break                                                                                     |            |                                                                                                                                                     |                                                                                                                               |
+| 11:30–12:00 | 3.2     | Remote Triggered Blackhole (RTBH) filtering                                               | WF         | [RTBH Presentation (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/presentations/RTBH.pdf)            | [RTBH Lab (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/labs/RTBH-local.html) |
+| 12:00–14:30 |         | Friday Prayer / Extended Break                                                            |            |                                                                                                                                                     |                                                                                                                               |
+| 14:30–16:00 | 3.3     | BGP origin validation (RPKI)                                                              | WF         | [RPKI Theory (NSRC)](https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/networking/routing-security/en/presentations/BGP-Origin-Validation.pdf) | [RPKI Deployment Lab (APNIC)](https://academy.apnic.net/virtual-labs?labId=174499)                                            |
+| 16:00–16:15 |         | Break                                                                                     |            |                                                                                                                                                     |                                                                                                                               |
+| 16:15–17:00 | 3.4     | Closing: roadmap and next steps                                                           | Discussion |                                                                                                                                                     |                                                                                                                               |
 
 **Day 3 Outcomes**
-- Understand the importance of documentation and operational maturity  
-- Develop a practical IXP deployment plan  
-- Agree on actionable next steps for participants  
+
+* Understand operational and security requirements for peering environments
+* Apply routing security techniques (RTBH, RPKI)
+* Understand the importance of documentation and operational maturity
+* Define next steps for IXP and peering deployment
 
 ---
 
 ## Attribution & Licensing
 
-Some of the workshop material is by **Dr Philip Smith**, available at **[BGP4ALL](https://bgp4all.com/)** under a  
-**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)** licence.  
-Full terms at [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+Some workshop material is by **Dr Philip Smith**, available via **BGP4All** under the
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International licence:
+https://creativecommons.org/licenses/by-nc-nd/4.0/
 
-Where referenced, workshop materials are licensed under their own Creative Commons terms.
-- Training material draws from open resources including NSRC, BGP4All, and Internet Society 
+Additional materials are sourced from NSRC, APNIC, and the Internet Society under their respective licences.
 
 ---
 
 ## Notes
-Additional background reading:
-- [RFC 8212 — Default EBGP Route Propagation Behaviour](https://datatracker.ietf.org/doc/html/rfc8212)  
-- [RFC 7454 — BGP Operations and Security](https://datatracker.ietf.org/doc/html/rfc7454)  
-- [MANRS — Routing Security Best Practices](https://www.manrs.org/)  
-- [BCP 38 — Ingress Filtering](https://datatracker.ietf.org/doc/html/bcp38)
 
- 
+Additional background reading:
+
+* RFC 8212 — Default EBGP Route Propagation Behaviour: https://datatracker.ietf.org/doc/html/rfc8212
+* RFC 7454 — BGP Operations and Security: https://datatracker.ietf.org/doc/html/rfc7454
+* MANRS — Routing Security Best Practices: https://www.manrs.org/
+* BCP 38 — Ingress Filtering: https://datatracker.ietf.org/doc/html/bcp38
