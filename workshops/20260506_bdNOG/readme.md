@@ -94,7 +94,7 @@ We recommend the following free courses be completed before the workshop:
 
 ---
 
-# Day 3 — Operating and Securing Peering Infrastructure (Friday)
+# Day 3 — Operating and Securing Peering Infrastructure 
 
 **Note:** Friday schedule is adjusted to accommodate Friday prayer.
 
