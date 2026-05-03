@@ -135,3 +135,4 @@ Additional background reading:
 * RFC 7454 — BGP Operations and Security: https://datatracker.ietf.org/doc/html/rfc7454
 * MANRS — Routing Security Best Practices: https://www.manrs.org/
 * BCP 38 — Ingress Filtering: https://datatracker.ietf.org/doc/html/bcp38
+* APNIC IXP workshop - https://academy.apnic.net/en/events?id=a0B2e000000dID6EAM&cmdisplay=fullscreen
