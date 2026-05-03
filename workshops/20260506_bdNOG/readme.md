@@ -63,6 +63,9 @@ We recommend the following free courses be completed before the workshop:
 * Describe transit vs peering trade-offs
 * Understand basic routing policy concepts
 
+**Other resources**
+* https://nsrc.org/workshops/2026/nsrc-nznog2026-adv-bgp/agenda.html
+
 ---
 
 # Day 2 — How to Peer (Configuration and Decision-Making)
