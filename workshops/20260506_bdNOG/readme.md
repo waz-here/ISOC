@@ -140,3 +140,4 @@ Additional background reading:
 * MANRS - IXP Guidelines: https://manrs.org/ixps/ixp-guide/
 * BCP 38 — Ingress Filtering: https://datatracker.ietf.org/doc/html/bcp38
 * APNIC IXP workshop - https://academy.apnic.net/en/events?id=a0B2e000000dID6EAM&cmdisplay=fullscreen
+* BGP From Theory to Practice (ch1) - https://blog.lacnic.net/wp-content/uploads/2023/11/bgp-from-theory-to-practice-contents.pdf
