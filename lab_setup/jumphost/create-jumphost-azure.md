@@ -36,9 +36,9 @@ Cloud Shell already includes the Azure CLI, so there is no need to install Azure
 
 Verify the active subscription:
 
-    ```bash
+
     az account show -o table
-    ```
+
 
 If you have more than one subscription, list them:
 
