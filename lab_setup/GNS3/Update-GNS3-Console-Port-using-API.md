@@ -27,14 +27,29 @@ This creates a rollback copy and protects against accidental corruption
 
 ## 4. Get Project ID
 
+Set the credentials via an interactive prompt
+
 ```bash
-curl -s http://127.0.0.1:3080/v2/projects | jq
+export GNS3_USER=admin
+read -rsp "GNS3 password: " GNS3_PASS
+export GNS3_PASS
+echo
+```
+
+Why this is safer:
+read -s   hides what you type
+-r        prevents backslash interpretation
+-p        shows a prompt
+
+
+```bash
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects | jq
 ```
 
 Find your project name:
 
 ```bash
-PROJECT_ID=$(curl -s http://127.0.0.1:3080/v2/projects \
+PROJECT_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects \
  | jq -r '.[] | select(.name=="IXP lab") | .project_id')
 ```
 
@@ -46,13 +61,13 @@ This will query GNS3 API and extracts the correct project identifier
 Lists all nodes and show the current console ports
 
 ```bash
-curl -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes | jq
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes | jq
 ```
 
 ## 6. Get Node ID (example: B1)
 
 ```bash
-NODE_ID=$(curl -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes \
+NODE_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes \
  | jq -r '.[] | select(.name=="B1") | .node_id')
 ```
 
@@ -77,7 +92,7 @@ ss -tln | grep 50
 ## 8. Stop the Node (Important)
 
 ```bash
-curl -X POST \
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST \
 http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/stop
 ```
 
@@ -90,7 +105,7 @@ http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/stop
 ## 9. Update Console Port
 
 ```bash
-curl -X PUT \
+curl -u "$GNS3_USER:$GNS3_PASS" -X PUT \
 http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID \
 -H "Content-Type: application/json" \
 -d '{"console":5011}'
@@ -102,7 +117,7 @@ Updates the node configuration and assign new console port
 ## 10. Restart the Node
 
 ```bash
-curl -X POST \
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST \
 http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/start
 ```
 
@@ -111,7 +126,7 @@ http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/start
 ## 11. Verify
 
 ```bash
-curl -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes \
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes \
  | jq -r '.[] | {name, console}'
 ```
 
