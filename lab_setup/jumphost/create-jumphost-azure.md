@@ -177,6 +177,14 @@ To allow a known workshop subnet:
 
 Do not leave SSH open to the Internet unless there is a clear operational reason.
 
+To allow any IP to connect:
+
+    az network nsg rule update \
+      --resource-group "$RG" \
+      --nsg-name "${VM}NSG" \
+      --name default-allow-ssh \
+      --source-address-prefixes '*'
+
 ## 8. Display the public IP address
 
 Show the VM IP details:
