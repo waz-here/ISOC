@@ -93,6 +93,8 @@ Select the Node ID (example: B1)
 ```bash
 NODE_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes \
  | jq -r '.[] | select(.name=="B1") | .node_id')
+
+echo "$NODE_ID"
 ```
 
 ### Step 2: Stop the Router
