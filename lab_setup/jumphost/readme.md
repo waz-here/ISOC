@@ -1,6 +1,6 @@
-# Student Jumphost Build Runbook
+# How to set up the Jumphost
 
-This runbook builds a repeatable student jumphost inside an Ubuntu or Debian-based Proxmox LXC container.
+This builds a repeatable jumphost using an Ubuntu or Debian-based Proxmox LXC container.
 
 ## Purpose
 
