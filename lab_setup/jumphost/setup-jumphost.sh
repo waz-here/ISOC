@@ -12,6 +12,7 @@
 #     --gns3-host 172.233.75.181 \
 #     --lab-script ./lab.sh
 
+# Exit immediately on errors, undefined variables, or failed commands in pipelines for safer script execution.
 set -euo pipefail
 
 TEMPLATE_USER="student01"
