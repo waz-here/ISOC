@@ -220,7 +220,7 @@ for each router:
 
 | Method          | Use Case           | Difficulty |
 | --------------- | ------------------ | ---------- |
-| Wipe            | Quick reset        | * Easy     |
+| Wipe            | Quick reset        | *       |
 | API wipe        | Automation         | **         |
 | Config-register | Realistic recovery | ***      |
 | Startup config  | Lab environments   | **         |
