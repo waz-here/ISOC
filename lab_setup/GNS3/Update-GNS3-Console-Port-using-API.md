@@ -75,6 +75,12 @@ Lists all nodes and show the current console ports
 curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes | jq
 ```
 
+Check existing allocated console port
+
+```bash
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes  | jq -r '.[] | "\(.console) → \(.name) → \(.node_id)"' | sort
+```
+
 ## 6. Get Node ID (example: B1)
 
 ```bash
