@@ -4,8 +4,6 @@
 
 This guide explains how to safely update GNS3 console (telnet) port numbers using the GNS3 API. This method avoids directly editing the `.gns3` project file and provides a controlled, repeatable workflow suitable for training environments and automation.
 
----
-
 ## 2. Why Check Port Availability?
 
 Before assigning a console port, you must ensure it is not already in use.
@@ -15,8 +13,6 @@ Before assigning a console port, you must ensure it is not already in use.
 * Prevents port conflicts
 * Avoids silent failures
 * Ensures predictable lab behaviour
-
----
 
 ## 3. Backup (MANDATORY)
 
