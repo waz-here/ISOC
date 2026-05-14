@@ -49,11 +49,22 @@ curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects | jq
 Find your project name:
 
 ```bash
-PROJECT_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects \
- | jq -r '.[] | select(.name=="IXP lab") | .project_id')
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects \
+| jq -r '.[] | "\(.name) → \(.project_id)"'
 ```
 
-This will query GNS3 API and extracts the correct project identifier
+This will query GNS3 API and extracts the name and project identifier
+
+Select the project id
+
+```bash
+PROJECT_NAME="IXP lab"
+
+PROJECT_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects \
+  | jq -r --arg name "$PROJECT_NAME" '.[] | select(.name == $name) | .project_id')
+
+echo "$PROJECT_ID"
+```
 
 
 ## 5. List Nodes
