@@ -229,3 +229,217 @@ The field you normally change is:
 ```json
 "console": 5011
 ```
+
+### Step 6: Find a Router Entry in the Project File
+
+Use `grep` to find the line number for a device name.
+
+```bash
+grep -n '"name": "B1"' "IXP lab.gns3"
+```
+
+
+
+`grep -n` searches for the node called `B1` and prints the matching line number. The line number helps you jump directly to the right area in the file.
+
+Example output:
+
+```text
+245:      "name": "B1",
+```
+
+Now display the surrounding lines:
+
+```bash
+sed -n '235,260p' "IXP lab.gns3"
+```
+
+
+
+`sed -n '235,260p'` prints only lines 235 to 260, allowing you to inspect the full JSON block for that node without opening the entire file.
+
+Look for a nearby line similar to:
+
+```json
+"console": 5099,
+```
+
+That is the value you need to update.
+
+### Step 7: Edit the Project File Manually
+
+Open the file with line numbers:
+
+```bash
+nano -l "IXP lab.gns3"
+```
+
+`nano -l` opens the project file and shows line numbers. This makes it easier to use the line numbers found with `grep`.
+
+Find the router name, then update only the `console` value in that same node block.
+
+For example, change this:
+
+```json
+"name": "B1",
+...
+"console": 5099,
+```
+
+To this:
+
+```json
+"name": "B1",
+...
+"console": 5011,
+```
+
+### Important editing rules
+
+Do not change:
+
+- `node_id`
+- `compute_id`
+- `x` / `y` position values
+- `properties`
+- link data
+- project ID
+
+Only change the numeric value after:
+
+```json
+"console":
+```
+
+Also preserve JSON formatting:
+
+```json
+"console": 5011,
+```
+
+Do not accidentally remove the comma unless it is already the final item in that JSON object.
+
+### Step 8: Repeat for Each Device
+
+Use `grep` to locate each device quickly.
+
+```bash
+grep -n '"name": "C1"' "IXP lab.gns3"
+grep -n '"name": "P1"' "IXP lab.gns3"
+grep -n '"name": "A1"' "IXP lab.gns3"
+grep -n '"name": "Cust1"' "IXP lab.gns3"
+```
+
+Then inspect nearby lines with `sed` and update the `console` value in the relevant block.
+
+Example:
+
+```bash
+sed -n '300,330p' "IXP lab.gns3"
+```
+
+This prints a small section of the project file so you can confirm that the `console` value you are changing belongs to the correct node.
+
+### Step 9: Check for Duplicate Console Ports
+
+After editing, list all console ports:
+
+```bash
+grep -n '"console":' "IXP lab.gns3"
+```
+
+This prints every line containing a console port. Review the output and check that no two devices share the same port.
+
+For a smaller check, search for a specific port:
+
+```bash
+grep -n '"console": 5011' "IXP lab.gns3"
+```
+
+This confirms whether port `5011` appears once. If it appears more than once, two devices are using the same telnet port and one must be changed.
+
+### Step 10: Validate the `.gns3` File Syntax
+
+The `.gns3` file is JSON. After editing, validate it before opening it in GNS3.
+
+Use `jq` if installed:
+
+```bash
+jq empty "IXP lab.gns3"
+```
+
+`jq empty` parses the file as JSON without printing it. If there is no output, the syntax is valid.
+
+If `jq` reports an error, it will usually show the approximate line where the JSON syntax is broken.
+
+If `jq` is not installed:
+
+```bash
+sudo apt update
+sudo apt install jq
+```
+
+Another way is to use python
+
+```bash
+python3 -m json.tool "IXP lab.gns3" >/dev/null
+```
+
+### Step 11: Confirm the Project Still Opens
+
+After validation:
+
+1. Close GNS3 if it is open.
+2. Reopen the project.
+3. Check node console ports in GNS3.
+4. Start one or two devices first.
+5. Test telnet access.
+
+Example:
+
+```bash
+telnet 127.0.0.1 5011
+```
+
+This tests access to `B1` if `B1` has been assigned console port `5011`.
+
+### Step 12: Restore from Backup if Needed
+
+If the project does not open or the JSON validation fails and you cannot quickly fix it, restore the backup.
+
+Example:
+
+```bash
+cp "IXP lab.gns3.20260514-103000.bak" "IXP lab.gns3"
+```
+
+This replaces the edited project file with the known-good backup.
+
+---
+
+## Quick Reference
+
+```bash
+# Back up first
+cp "IXP lab.gns3" "IXP lab.gns3.$(date +%Y%m%d-%H%M%S).bak"
+
+# Find a node
+grep -n '"name": "B1"' "IXP lab.gns3"
+
+# Print nearby lines
+sed -n '235,260p' "IXP lab.gns3"
+
+# Edit with line numbers
+nano -l "IXP lab.gns3"
+
+# Check all console entries
+grep -n '"console":' "IXP lab.gns3"
+
+# Check one specific port
+grep -n '"console": 5011' "IXP lab.gns3"
+
+# Validate JSON syntax
+jq empty "IXP lab.gns3" <br>
+python3 -m json.tool "IXP lab.gns3" >/dev/null
+```
+
