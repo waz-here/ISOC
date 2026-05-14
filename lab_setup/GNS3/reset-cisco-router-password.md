@@ -49,30 +49,68 @@ This method is ideal for labs or scripted environments.
 
 ### Step 1: Get Project and Node IDs
 
-```bash
-curl http://127.0.0.1:3080/v2/projects
-```
+Set the credentials via an interactive prompt
 
 ```bash
-curl http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes
+export GNS3_USER=admin
+read -rsp "GNS3 password: " GNS3_PASS
+export GNS3_PASS
+echo
+```
+
+Why this is safer:
+read -s   hides what you type
+-r        prevents backslash interpretation
+-p        shows a prompt
+
+
+```bash
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects | jq
+```
+
+Find your project name:
+
+```bash
+curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects \
+| jq -r '.[] | "\(.name) → \(.project_id)"'
+```
+
+This will query GNS3 API and extracts the name and project identifier
+
+Select the project id (example: IXP lab)
+
+```bash
+PROJECT_NAME="IXP lab"
+
+PROJECT_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects \
+  | jq -r --arg name "$PROJECT_NAME" '.[] | select(.name == $name) | .project_id')
+
+echo "$PROJECT_ID"
+```
+
+Select the Node ID (example: B1)
+
+```bash
+NODE_ID=$(curl -u "$GNS3_USER:$GNS3_PASS" -s http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes \
+ | jq -r '.[] | select(.name=="B1") | .node_id')
 ```
 
 ### Step 2: Stop the Router
 
 ```bash
-curl -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/stop
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/stop
 ```
 
 ### Step 3: Wipe the Router
 
 ```bash
-curl -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/wipe
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/wipe
 ```
 
 ### Step 4: Start the Router
 
 ```bash
-curl -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/start
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/start
 ```
 
 ### Result
@@ -87,7 +125,7 @@ This mimics real Cisco password recovery.
 ### Step 1: Set config-register
 
 ```bash
-curl -X PUT http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID \
+curl -u "$GNS3_USER:$GNS3_PASS" -X PUT http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID \
 -H "Content-Type: application/json" \
 -d '{"properties": {"config_register": "0x2142"}}'
 ```
@@ -97,7 +135,7 @@ curl -X PUT http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID \
 ### Step 2: Restart Router
 
 ```bash
-curl -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/reload
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/reload
 ```
 
 ### Step 3: Reset Password
@@ -120,7 +158,7 @@ Best for structured labs (e.g. workshops).
 1. Create a clean config file:
 
 ```bash
-hostname R1
+hostname B1
 no ip domain-lookup
 enable secret cisco
 line vty 0 4
@@ -131,7 +169,7 @@ line vty 0 4
 2. Apply via GNS3 API:
 
 ```bash
-curl -X POST \
+curl -u "$GNS3_USER:$GNS3_PASS" -X POST \
 http://127.0.0.1:3080/v2/projects/$PROJECT_ID/nodes/$NODE_ID/startup-config \
 -d @router.cfg
 ```
