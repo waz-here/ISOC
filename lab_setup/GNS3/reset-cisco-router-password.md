@@ -207,7 +207,7 @@ for each router:
 ```
 
 
-## 📎 References
+## References
 
 * GNS3 API Documentation
   [https://gns3-server.readthedocs.io/en/stable/api/v2/](https://gns3-server.readthedocs.io/en/stable/api/v2/)
