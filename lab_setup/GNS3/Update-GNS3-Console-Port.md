@@ -439,7 +439,7 @@ grep -n '"console":' "IXP lab.gns3"
 grep -n '"console": 5011' "IXP lab.gns3"
 
 # Validate JSON syntax
-jq empty "IXP lab.gns3" <br>
+jq empty "IXP lab.gns3"
 python3 -m json.tool "IXP lab.gns3" >/dev/null
 ```
 
