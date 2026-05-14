@@ -157,7 +157,7 @@ SR2 = 5123
 
 ---
 
-## 5. Step-by-Step: Static Assign Console Ports Using the `.gns3` Project File
+## 5. Static Assign Console Ports Using the `.gns3` Project File
 
 > Important: Stop the GNS3 project before editing the `.gns3` file. Editing while the project is open can cause GNS3 to overwrite your changes.
 
