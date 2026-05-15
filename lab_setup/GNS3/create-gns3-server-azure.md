@@ -17,7 +17,7 @@ The guide uses:
 - Microsoft Azure Cloud Shell
 - Azure CLI
 - Ubuntu 24.04 LTS
-- Standard_D48as_v5 virtual machine
+- Standard_D48as_v4 virtual machine
 - Native GNS3 server installation
 
 This guide assumes basic Linux and Azure familiarity.
