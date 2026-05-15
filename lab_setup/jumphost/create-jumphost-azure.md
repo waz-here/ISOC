@@ -6,7 +6,7 @@ This builds a simple Azure-based jumphost using an Ubuntu virtual machine.
 
 Students SSH to the jumphost using a shared account. The jumphost provides a single access point into the lab environment.
 
-This guide only covers the Azure VM deployment and basic SSH access. It does not configure a restricted lab menu, ZeroTier, GNS3 console access, or forced SSH commands. Refer to (How to set up the Jumphost)[readme.md]
+This guide only covers the Azure VM deployment and basic SSH access. It does not configure a restricted lab menu, ZeroTier, GNS3 console access, or forced SSH commands. Refer to [How to set up the Jumphost](readme.md)
 
 This is a classroom access method, not a hardened security design.
 
