@@ -68,6 +68,18 @@ Estimated total workshop cost:
 
 The Standard_D48as_v5 provides a good balance between cost and performance for large CSR1000v based workshop environments.
 
+### Recommended deployment process:
+
+1. Deploy Azure VM
+2. Install GNS3 server
+3. Upload router images
+4. Import topology
+5. Test startup
+6. Configure jumphost
+7. Provide student access
+8. Deallocate after workshop
+
+
 
 # Launch Azure Cloud Shell
 
@@ -112,7 +124,7 @@ The following command checks available D48as_v5 SKUs:
 az vm list-skus \
   --location southeastasia \
   --resource-type virtualMachines \
-  --size Standard_D48as_v5 \
+  --size Standard_D48as_v4 \
   --query "[].{
     Name:name,
     vCPU: capabilities[?name=='vCPUs'] | [0].value,
@@ -135,7 +147,7 @@ LOCATION="southeastasia"
 RG="rg-gns3"
 VM="gns3srv01"
 USER="user01"
-SIZE="Standard_D48as_v5"
+SIZE="Standard_D48as_v4"
 IMAGE="Ubuntu2404"
 PASSWORD='ChangeMe123!'
 ```
@@ -228,8 +240,7 @@ ssh user01@PUBLIC_IP
 # Update Ubuntu
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
+sudo apt update && sudo apt dist-upgrade -y && sudo apt -y autoremove
 ```
 
 
@@ -352,27 +363,11 @@ Approximate sizing:
 | RAM per router | 3-4 GB |
 | vCPU per router | 1 |
 
-A Standard_D48as_v5 instance should comfortably support approximately:
+A Standard_D48as_v4 instance should comfortably support approximately:
 
 - 40-50 CSR1000v routers
 
 depending on topology complexity and lab activity.
-
-
-
-# Recommended Workshop Workflow
-
-Recommended deployment process:
-
-1. Deploy Azure VM
-2. Install GNS3 server
-3. Upload router images
-4. Import topology
-5. Test startup
-6. Configure jumphost
-7. Provide student access
-8. Deallocate after workshop
-
 
 
 # Deallocate the VM After the Workshop
