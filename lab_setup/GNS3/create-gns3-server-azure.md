@@ -8,7 +8,6 @@ The environment is designed for:
 
 - Network operator workshops
 - GNS3 routing labs
-- Cisco CSR1000v topologies
 - Temporary cloud-based training environments
 - Remote workshop access
 - Repeatable workshop infrastructure deployment
