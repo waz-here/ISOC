@@ -137,7 +137,7 @@ VM="gns3srv01"
 USER="user01"
 SIZE="Standard_D48as_v5"
 IMAGE="Ubuntu2404"
-PASSWORD='LabPassword123!'
+PASSWORD='ChangeMe123!'
 ```
 
 
