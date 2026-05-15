@@ -402,7 +402,7 @@ az group delete --name "$RG"
 
 ---
 
-# References
+## References
 
 - Azure VM documentation: https://learn.microsoft.com/en-us/azure/virtual-machines/
 - Azure CLI documentation: https://learn.microsoft.com/en-us/cli/azure/
