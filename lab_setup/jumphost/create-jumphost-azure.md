@@ -248,12 +248,19 @@ By default, Azure creates an inbound SSH rule named `default-allow-ssh`.
 
 By default, the SSH rule may allow access from any source.
 
-Find your current public IP address:
+Ensure to complete this on your local system, and not the cloud CLI. Find your current public IP address:
+
+### Linux and modern Windows Command Prompt
 
 ```bash
-curl ifconfig.me
+curl https://ifconfig.me/ip
 ```
-Ensure to complete this on your system, and not the cloud CLI.
+
+### Windows PowerShell
+
+```powershell
+Invoke-RestMethod https://ifconfig.me/ip
+```
 
 Store it as a variable:
 
