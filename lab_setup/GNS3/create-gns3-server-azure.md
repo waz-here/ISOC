@@ -69,6 +69,20 @@ Estimated total workshop cost:
 The Standard_D48as_v5 provides a good balance between cost and performance for large CSR1000v based workshop environments.
 
 
+# Launch Azure Cloud Shell
+
+Login to:
+
+https://portal.azure.com
+
+Launch Cloud Shell from the Azure Portal.
+
+Select:
+
+- Bash
+
+The Azure CLI is already installed in Cloud Shell.
+
 
 # Azure Region Selection
 
@@ -110,23 +124,6 @@ az vm list-skus \
 Note:
 
 This command can take several minutes to complete.
-
-
-
-# Launch Azure Cloud Shell
-
-Login to:
-
-https://portal.azure.com
-
-Launch Cloud Shell from the Azure Portal.
-
-Select:
-
-- Bash
-
-The Azure CLI is already installed in Cloud Shell.
-
 
 
 # Create Variables
