@@ -253,12 +253,14 @@ Find your current public IP address:
 ```bash
 curl ifconfig.me
 ```
+Ensure to complete this on your system, and not the cloud CLI.
 
 Store it as a variable:
 
 ```bash
-MYIP="$(curl -s ifconfig.me)/32"
+MYIP="<PUBLIC_IP>"
 ```
+This command can store the azure public IP `MYIP="$(curl -s ifconfig.me)/32"`
 
 Update the existing SSH rule so that only your current public IP can connect:
 
