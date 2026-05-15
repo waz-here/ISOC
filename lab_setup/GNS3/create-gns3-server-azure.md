@@ -19,31 +19,9 @@ The guide uses:
 - Azure CLI
 - Ubuntu 24.04 LTS
 - Standard_D48as_v5 virtual machine
-- Premium SSD storage
 - Native GNS3 server installation
 
 This guide assumes basic Linux and Azure familiarity.
-
-
-
-# Requirements
-
-Before starting:
-
-- Microsoft Azure account
-- Access to Azure Portal
-- Azure subscription with sufficient quota
-- Cisco CSR1000v images
-- GNS3 topology files
-- SSH client
-
-Recommended:
-
-- Firefox or Chromium browser
-- Stable Internet connection
-- GitHub account for storing topology files and documentation
-
-
 
 # Estimated Workshop Cost
 
