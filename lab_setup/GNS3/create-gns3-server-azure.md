@@ -26,11 +26,11 @@ This guide assumes basic Linux and Azure familiarity.
 
 The following estimates are approximate only and may change depending on Azure pricing, region, storage selection, and bandwidth usage.
 
-At the time of writing, the Standard_D48as_v5 instance provides:
+At the time of writing, the Standard_D48as_v4 instance provides:
 
 - 48 vCPU
 - 192 GB RAM
-- AMD EPYC Milan CPUs
+- AMD EPYC Rome (7002) CPUs
 - Premium SSD support
 
 The following estimates assume:
