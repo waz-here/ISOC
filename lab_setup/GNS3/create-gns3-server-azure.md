@@ -404,19 +404,8 @@ az group delete --name "$RG"
 
 # References
 
-Azure VM documentation:
-
-https://learn.microsoft.com/en-us/azure/virtual-machines/
-
-Azure CLI documentation:
-
-https://learn.microsoft.com/en-us/cli/azure/
-
-GNS3 documentation:
-
-https://docs.gns3.com/
-
-Azure D-Series documentation:
-
-https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series
+- Azure VM documentation: https://learn.microsoft.com/en-us/azure/virtual-machines/
+- Azure CLI documentation: https://learn.microsoft.com/en-us/cli/azure/
+- GNS3 documentation: https://docs.gns3.com/
+- Azure D-Series documentation: https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series
 
