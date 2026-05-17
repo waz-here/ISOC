@@ -17,7 +17,7 @@ The guide uses:
 - Microsoft Azure Cloud Shell
 - Azure CLI
 - Ubuntu 24.04 LTS
-- Standard_D48as_v4 virtual machine
+- Standard_D48s_v4 virtual machine
 - Native GNS3 server installation
 
 This guide assumes basic Linux and Azure familiarity.
@@ -26,7 +26,7 @@ This guide assumes basic Linux and Azure familiarity.
 
 The following estimates are approximate only and may change depending on Azure pricing, region, storage selection, and bandwidth usage.
 
-At the time of writing, the Standard_D48as_v4 instance provides:
+At the time of writing, the Standard_D48s_v4 instance provides:
 
 - 48 vCPU
 - 192 GB RAM
@@ -43,7 +43,7 @@ The following estimates assume:
 
 | VM Size | vCPU | RAM | Approx Hourly Cost (USD) | Approx 24hr Compute Cost (USD) |
 |---|---|---|---|---|
-| Standard_D48as_v4 | 48 | 192 GB | ~$4.60/hr | ~$110 |
+| Standard_D48s_v4 | 48 | 192 GB | ~$4.60/hr | ~$110 |
 | Standard_D48as_v5 | 48 | 192 GB | ~$4.80/hr | ~$115 |
 | Standard_D48as_v6 | 48 | 192 GB | ~$5.20-5.60/hr | ~$125-135 |
 | Standard_D48as_v7 | 48 | 192 GB | ~$5.80-6.50/hr | ~$140-156 |
@@ -60,12 +60,12 @@ Estimated total workshop cost:
 
 | VM | Approx Total Workshop Cost |
 |---|---|
-| D48as_v4 | ~$120-130 |
+| D48s_v4 | ~$120-130 |
 | D48as_v5 | ~$125-140 |
 | D48as_v6 | ~$140-160 |
 | D48as_v7 | ~$155-180 |
 
-The Standard_D48as_v5 provides a good balance between cost and performance for large CSR1000v based workshop environments.
+The Standard_D48s_v4 provides a good balance between cost and performance for large CSR1000v based workshop environments.
 
 ### Recommended deployment process:
 
@@ -121,7 +121,7 @@ The following command checks available D48as_v5 SKUs:
 az vm list-skus \
   --location southeastasia \
   --resource-type virtualMachines \
-  --size Standard_D48as_v4 \
+  --size Standard_D48s_v4 \
   --query "[].{
     Name:name,
     vCPU: capabilities[?name=='vCPUs'] | [0].value,
@@ -138,7 +138,7 @@ This command can take several minutes to complete.
 
 Large Azure virtual machines require sufficient vCPU quota in the selected region.
 
-This is important because a Standard_D48as_v4 VM requires:
+This is important because a Standard_D48s_v4 VM requires:
 
 * 48 vCPU
 * 192 GB RAM
@@ -152,12 +152,12 @@ There are two quota types to check:
 | Total Regional vCPUs | Maximum total vCPUs allowed in the region      |
 | VM Family vCPUs      | Maximum vCPUs allowed for a specific VM family |
 
-For the Standard_D48as_v4 VM, check:
+For the Standard_D48s_v4 VM, check:
 
 * Total Regional vCPUs
-* Standard DASv4 Family vCPUs
+* Standard DSv4 Family vCPUs
 
----
+
 
 ## Check Current Quota
 
@@ -169,12 +169,12 @@ az vm list-usage \
   -o table
 ```
 
-Or to view just the Standard_D48as_v4 and Standard_D48as_v5
+Or to view just the Standard_D48s_v4 and Standard_D48as_v5
 
 ```bash
 az vm list-usage \
   --location southeastasia \
-  -o table | grep -Ei "Name|Total |DASv4|DASv5"
+  -o table | grep -Ei "Name|Total | DSv4| DSv5"
 ```
 
 Example output:
@@ -183,16 +183,16 @@ Example output:
 Name                                CurrentValue    Limit
 ----------------------------------  --------------  -------
 Total Regional vCPUs                0               10
-Standard DASv4 Family vCPUs         0               0
+Standard DSv4 Family vCPUs         0               0
 ```
 
-In this example, the subscription cannot deploy a Standard_D48as_v4 VM because:
+In this example, the subscription cannot deploy a Standard_D48s_v4 VM because:
 
 * the regional quota is only 10 vCPU
-* the D48as_v4 VM requires 48 vCPU
-* the DASv4 family quota is 0 vCPU
+* the D48s_v4 VM requires 48 vCPU
+* the DSv4 family quota is 0 vCPU
 
----
+
 
 ## Example Quota Error
 
@@ -209,7 +209,7 @@ Minimum New Limit Required: 48
 
 This means Azure has blocked the deployment because the requested VM would exceed the approved vCPU quota for that region.
 
----
+
 
 ## Request a Quota Increase
 
@@ -219,25 +219,25 @@ In the Azure Portal:
 2. Select Compute
 3. Filter by region, for example southeastasia
 4. Request an increase for Total Regional vCPUs
-5. Request an increase for Standard DASv4 Family vCPUs
+5. Request an increase for Standard DSv4 Family vCPUs
 
 Recommended quota request:
 
 | Quota                       | Recommended Value |
 | --------------------------- | ----------------- |
 | Total Regional vCPUs        | 64                |
-| Standard DASv4 Family vCPUs | 64                |
+| Standard DSv4 Family vCPUs | 64                |
 | Standard EASv5 Family vCPUs | 64                |
 
 Requesting 64 vCPU provides enough quota for:
 
-* one Standard_D48as_v4 GNS3 server
+* one Standard_D48s_v4 GNS3 server
 * one small jumphost
 * rebuild or testing overhead
 
 If planning to test memory optimised E-series VMs later, also request EASv5 quota.
 
----
+
 
 ## Recommended Backup Regions
 
@@ -254,7 +254,7 @@ Recommended approach:
 
 If the primary region does not have available quota or capacity, repeat the quota check in a backup region.
 
----
+
 
 ## Important Notes
 
@@ -285,7 +285,7 @@ LOCATION="southeastasia"
 RG="rg-gns3"
 VM="gns3srv01"
 USER="user01"
-SIZE="Standard_D48as_v4"
+SIZE="Standard_D48s_v4"
 IMAGE="Ubuntu2404"
 PASSWORD='ChangeMe123!'
 ```
@@ -313,7 +313,6 @@ az vm create \
   --admin-username "$USER" \
   --authentication-type password \
   --admin-password "$PASSWORD" \
-  --storage-sku Premium_LRS
 ```
 
 The deployment process can take several minutes.
@@ -381,7 +380,29 @@ ssh user01@PUBLIC_IP
 sudo apt update && sudo apt dist-upgrade -y && sudo apt -y autoremove
 ```
 
+During installation there install will stop for user confimation to all non-root access to ubridge and wireshark. Use debconf-set-selections before installation.
 
+## Preseed ubridge
+
+```bash
+echo "ubridge ubridge/install-setuid boolean true" | sudo debconf-set-selections
+```
+
+This automatically answers:
+
+Should non-superusers be able to run GNS3? <br>
+YES
+
+## Preseed Wireshark
+
+```bash
+echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
+```
+
+This automatically answers:
+
+Should non-superusers be able to capture packets? <br>
+YES
 
 # Install GNS3 Server Dependencies
 
@@ -501,7 +522,7 @@ Approximate sizing:
 | RAM per router | 3-4 GB |
 | vCPU per router | 1 |
 
-A Standard_D48as_v4 instance should comfortably support approximately:
+A Standard_D48s_v4 instance should comfortably support approximately:
 
 - 40-50 CSR1000v routers
 
