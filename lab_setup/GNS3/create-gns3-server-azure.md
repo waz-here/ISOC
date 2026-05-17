@@ -554,6 +554,403 @@ az vm start \
 az group delete --name "$RG"
 ```
 
+# Enable accesss to GNS3 server and import a project
+
+## Step 1 — Enable the GNS3 Server
+
+The Ubuntu GNS3 packages install `gns3server`, but they do **not always create a `gns3.service` systemd unit**.
+
+Check the binary:
+
+```bash
+which gns3server
+gns3server --version
+```
+
+Create a systemd service:
+
+```bash
+sudo tee /etc/systemd/system/gns3.service > /dev/null <<'EOF'
+[Unit]
+Description=GNS3 Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=user01
+Group=user01
+ExecStart=/usr/bin/gns3server --host 0.0.0.0 --port 3080
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=/home/user01
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+Then enable and start it:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable gns3
+sudo systemctl start gns3
+sudo systemctl status gns3
+```
+
+Check logs if it fails:
+
+```bash
+journalctl -u gns3 -n 50 --no-pager
+```
+
+You should also restrict Azure NSG access to port `3080` to your public IP only.
+
+## Step 2 — Open Port 3080 in Azure
+
+Allow GNS3 server access:
+
+```bash id="nl9n94"
+az network nsg rule create \
+  --resource-group "$RG" \
+  --nsg-name "${VM}NSG" \
+  --name allow-gns3 \
+  --priority 1010 \
+  --destination-port-ranges 3080 \
+  --access Allow \
+  --protocol Tcp \
+  --direction Inbound \
+  --source-address-prefixes YOUR_PUBLIC_IP/32
+```
+
+Replace:
+
+* `YOUR_PUBLIC_IP` with your real IP.
+
+## Step 3 — Access GNS3 Server via Browser
+
+By default the standalone `gns3server` process:
+
+* does not enable authentication
+* does not use HTTPS
+* listens openly on the configured interface
+* exposes the REST API and web UI directly.
+
+You can access the GNS3 Server via this URL
+
+```text
+http://203.0.113.44:3080/static/web-ui/server/1/projects
+```
+
+The service file:
+
+```ini
+ExecStart=/usr/bin/gns3server --host 0.0.0.0 --port 3080
+```
+
+explicitly tells GNS3 to:
+
+* listen on all interfaces
+* expose the server publicly.
+
+So anyone who can reach TCP/3080 can:
+
+* connect
+* upload projects
+* control routers
+* access captures
+* potentially execute commands via appliances.
+
+This is normal GNS3 behaviour unless authentication is configured.
+
+For workshop infrastructure this is dangerous if:
+
+* NSG permits `0.0.0.0/0`
+* public Internet can reach port 3080.
+
+GNS3 was designed primarily for:
+
+* trusted LAN environments
+* lab networks
+* local workstation use.
+
+
+# Recommended Immediate Fix
+
+## Restrict Azure NSG (currently restricted to SSH)
+
+Allow only:
+
+* your public IP
+* workshop jump host IP.
+
+NOT:
+
+* all Internet access.
+
+Example:
+
+```bash
+az network nsg rule update \
+  --resource-group "$RG" \
+  --nsg-name "${VM}NSG" \
+  --name allow-gns3 \
+  --source-address-prefixes YOUR_IP/32
+```
+
+This is the most important protection.
+
+
+## Recommended Better Architecture
+
+Instead of exposing GNS3 publicly:
+
+```text 
+Laptop
+  ->
+SSH tunnel
+  ->
+Azure GNS3 Server
+```
+
+Much safer.
+
+Example:
+
+```bash 
+ssh -L 3080:localhost:3080 user01@SERVER_IP
+```
+
+Then locally connect GNS3 GUI to:
+
+```text 
+localhost:3080
+```
+
+Now:
+
+* no public 3080 exposure
+* encrypted transport
+* authentication handled by SSH.
+
+This is the best operational model.
+
+## GNS3 Authentication Support
+
+You can enable authentication in:
+
+```text 
+/home/user01/.config/GNS3/2.2/gns3_server.conf
+```
+
+Example:
+
+```ini
+[Server]
+host = 0.0.0.0
+port = 3080
+auth = True
+user = admin
+password = StrongPassword123!
+```
+
+Then restart:
+
+```bash 
+sudo systemctl restart gns3
+```
+
+However:
+
+* many operators still rely primarily on firewall restrictions
+* because workshop credentials become operationally annoying.
+
+
+### HTTPS Support
+
+GNS3 itself does not provide strong production-grade HTTPS handling.
+
+If needed:
+
+* use nginx reverse proxy
+* TLS termination
+* HTTP auth.
+
+But for workshops:
+
+* NSG restriction
+* SSH tunnel
+
+is usually sufficient.
+
+### Important Workshop Recommendation
+
+For Azure environment it is strongly recommended:
+
+| Component                | Recommendation             |
+| ------------------------ | -------------------------- |
+| SSH                      | Restricted IPs             |
+| GNS3 3080                | Restricted to your IP only |
+| Student access           | Via jumphost               |
+| Authentication           | Optional                   |
+| Public Internet exposure | Avoid                      |
+
+---
+
+### Another Important Security Point
+
+Remember:
+
+* uploaded appliance templates
+* Docker containers
+* QEMU images
+
+can potentially execute arbitrary code on the GNS3 server.
+
+*So exposing GNS3 publicly without restriction is risky.*
+
+# How to telnet to routers
+
+You can tunnel:
+
+* remote GNS3 telnet console ports
+* through SSH port 22
+* to local ports on your laptop.
+
+This avoids exposing:
+
+* hundreds of telnet ports
+* publicly on Azure.
+
+# Example
+
+Suppose:
+
+* Azure VM public IP = `203.0.113.44`
+* GNS3 router console port = `5011`
+
+Create SSH tunnel:
+
+```bash 
+ssh -L 5011:127.0.0.1:5011 user01@203.0.113.44
+```
+
+Now your local machine gets:
+
+```text 
+localhost:5011
+```
+
+which forwards securely to:
+
+```text
+AzureVM:5011
+```
+
+---
+
+# Connect via Telnet Locally
+
+After tunnel established:
+
+```bash id="9on0k7"
+telnet localhost 5011
+```
+
+or from GNS3 locally:
+
+```text id="2djlwm"
+localhost:5011
+```
+
+---
+
+# Important Detail
+
+Use:
+
+```text id="vjlwm0"
+127.0.0.1
+```
+
+on the remote side.
+
+NOT:
+
+* public IP
+* 0.0.0.0
+
+because GNS3/Dynamips/QEMU usually bind locally.
+
+---
+
+# Multiple Console Ports
+
+You can tunnel many ports simultaneously.
+
+Example:
+
+```bash 
+ssh \
+  -L 5001:127.0.0.1:5001 \
+  -L 5002:127.0.0.1:5002 \
+  -L 5011:127.0.0.1:5011 \
+  -L 5012:127.0.0.1:5012 \
+  user01@203.0.113.44
+```
+
+
+[Optional] Use SSH Config
+
+On your laptop:
+
+```bash
+nano ~/.ssh/config
+```
+
+Example:
+
+```sshconfig 
+Host gns3lab
+    HostName 203.0.113.44
+    User user01
+
+    LocalForward 5001 127.0.0.1:5001
+    LocalForward 5002 127.0.0.1:5002
+    LocalForward 5011 127.0.0.1:5011
+    LocalForward 5012 127.0.0.1:5012
+```
+
+Then simply:
+
+```bash 
+ssh gns3lab
+```
+
+
+This means:
+
+* only SSH port 22 exposed publicly
+* all telnet traffic encrypted
+* no public telnet ports
+* much cleaner NSG rules.
+
+
+## Background SSH Tunnel
+
+```bash 
+ssh -f -N -L 5011:127.0.0.1:5011 user01@203.0.113.44
+```
+
+Options:
+
+* `-f` = background
+* `-N` = no shell
+
+Useful for persistent tunnels.
+
+
 ---
 
 ## References
@@ -562,4 +959,6 @@ az group delete --name "$RG"
 - Azure CLI documentation: https://learn.microsoft.com/en-us/cli/azure/
 - GNS3 documentation: https://docs.gns3.com/
 - Azure D-Series documentation: https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series
+- [OpenSSH Port Forwarding Documentation](https://man.openbsd.org/ssh#TCP_FORWARDING)
+- [GNS3 Remote Server Documentation](https://docs.gns3.com/docs/using-gns3/administration/gns3-server/)
 
