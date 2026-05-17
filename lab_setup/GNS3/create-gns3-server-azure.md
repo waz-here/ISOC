@@ -637,10 +637,10 @@ By default the standalone `gns3server` process:
 * listens openly on the configured interface
 * exposes the REST API and web UI directly.
 
-You can access the GNS3 Server via this URL
+You can access the GNS3 Server via:
 
 ```text
-http://203.0.113.44:3080/static/web-ui/server/1/projects
+http://YOUR_PUBLIC_IP:3080/static/web-ui/server/1/projects
 ```
 
 The service file:
@@ -669,15 +669,6 @@ For workshop infrastructure this is dangerous if:
 * NSG permits `0.0.0.0/0`
 * public Internet can reach port 3080.
 
-GNS3 was designed primarily for:
-
-* trusted LAN environments
-* lab networks
-* local workstation use.
-
-
-# Recommended Immediate Fix
-
 ## Restrict Azure NSG (currently restricted to SSH)
 
 Allow only:
@@ -702,7 +693,7 @@ az network nsg rule update \
 This is the most important protection.
 
 
-## Recommended Better Architecture
+## A Better Architecture for GNS3 Server access
 
 Instead of exposing GNS3 publicly:
 
@@ -714,7 +705,7 @@ SSH tunnel
 Azure GNS3 Server
 ```
 
-Much safer.
+Much safer, to use SSH tunnel.
 
 Example:
 
@@ -736,7 +727,7 @@ Now:
 
 This is the best operational model.
 
-## GNS3 Authentication Support
+### GNS3 Authentication Support
 
 You can enable authentication in:
 
@@ -796,10 +787,6 @@ For Azure environment it is strongly recommended:
 | Authentication           | Optional                   |
 | Public Internet exposure | Avoid                      |
 
----
-
-### Another Important Security Point
-
 Remember:
 
 * uploaded appliance templates
@@ -812,7 +799,7 @@ can potentially execute arbitrary code on the GNS3 server.
 
 # How to telnet to routers
 
-You can tunnel:
+You can use telnet via a SSH tunnel:
 
 * remote GNS3 telnet console ports
 * through SSH port 22
@@ -822,8 +809,6 @@ This avoids exposing:
 
 * hundreds of telnet ports
 * publicly on Azure.
-
-# Example
 
 Suppose:
 
@@ -848,29 +833,17 @@ which forwards securely to:
 AzureVM:5011
 ```
 
----
-
-# Connect via Telnet Locally
+## Connect via Telnet Locally
 
 After tunnel established:
 
-```bash id="9on0k7"
+```bash
 telnet localhost 5011
 ```
 
-or from GNS3 locally:
+Ensure to use:
 
-```text id="2djlwm"
-localhost:5011
-```
-
----
-
-# Important Detail
-
-Use:
-
-```text id="vjlwm0"
+```text
 127.0.0.1
 ```
 
@@ -883,9 +856,8 @@ NOT:
 
 because GNS3/Dynamips/QEMU usually bind locally.
 
----
 
-# Multiple Console Ports
+## Multiple Console Ports
 
 You can tunnel many ports simultaneously.
 
@@ -900,8 +872,7 @@ ssh \
   user01@203.0.113.44
 ```
 
-
-[Optional] Use SSH Config
+## [Optional] Use SSH Config
 
 On your laptop:
 
