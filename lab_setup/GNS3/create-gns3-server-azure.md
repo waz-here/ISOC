@@ -113,8 +113,6 @@ Common nearby regions include:
 
 For Asia Pacific workshops, Singapore is commonly used.
 
-
-
 # Check VM Availability
 
 The following command checks available D48as_v5 SKUs:
@@ -135,6 +133,139 @@ az vm list-skus \
 Note:
 
 This command can take several minutes to complete.
+
+# Check Azure Quotas Before Deployment
+
+Large Azure virtual machines require sufficient vCPU quota in the selected region.
+
+This is important because a Standard_D48as_v4 VM requires:
+
+* 48 vCPU
+* 192 GB RAM
+
+Azure quota is applied per subscription and per region. A subscription may have enough quota in one region but not in another.
+
+There are two quota types to check:
+
+| Quota Type           | Purpose                                        |
+| -------------------- | ---------------------------------------------- |
+| Total Regional vCPUs | Maximum total vCPUs allowed in the region      |
+| VM Family vCPUs      | Maximum vCPUs allowed for a specific VM family |
+
+For the Standard_D48as_v4 VM, check:
+
+* Total Regional vCPUs
+* Standard DASv4 Family vCPUs
+
+---
+
+## Check Current Quota
+
+Run:
+
+```bash
+az vm list-usage \
+  --location southeastasia \
+  -o table
+```
+
+Example output:
+
+```text
+Name                                CurrentValue    Limit
+----------------------------------  --------------  -------
+Total Regional vCPUs                0               10
+Standard DASv4 Family vCPUs         0               0
+```
+
+In this example, the subscription cannot deploy a Standard_D48as_v4 VM because:
+
+* the regional quota is only 10 vCPU
+* the D48as_v4 VM requires 48 vCPU
+* the DASv4 family quota is 0 vCPU
+
+---
+
+## Example Quota Error
+
+If quota is insufficient, VM creation may fail with an error similar to:
+
+```text
+QuotaExceeded
+Location: southeastasia
+Current Limit: 10
+Current Usage: 0
+Additional Required: 48
+Minimum New Limit Required: 48
+```
+
+This means Azure has blocked the deployment because the requested VM would exceed the approved vCPU quota for that region.
+
+---
+
+## Request a Quota Increase
+
+In the Azure Portal:
+
+1. Search for Quotas
+2. Select Compute
+3. Filter by region, for example southeastasia
+4. Request an increase for Total Regional vCPUs
+5. Request an increase for Standard DASv4 Family vCPUs
+
+Recommended quota request:
+
+| Quota                       | Recommended Value |
+| --------------------------- | ----------------- |
+| Total Regional vCPUs        | 64                |
+| Standard DASv4 Family vCPUs | 64                |
+| Standard EASv5 Family vCPUs | 64                |
+
+Requesting 64 vCPU provides enough quota for:
+
+* one Standard_D48as_v4 GNS3 server
+* one small jumphost
+* rebuild or testing overhead
+
+If planning to test memory optimised E-series VMs later, also request EASv5 quota.
+
+---
+
+## Recommended Backup Regions
+
+Quota and capacity can vary by region.
+
+Recommended approach:
+
+| Region           | Purpose                              |
+| ---------------- | ------------------------------------ |
+| southeastasia    | Primary Asia Pacific workshop region |
+| australiaeast    | Backup region                        |
+| eastasia         | Backup region                        |
+| southafricanorth | Africa workshop region               |
+
+If the primary region does not have available quota or capacity, repeat the quota check in a backup region.
+
+---
+
+## Important Notes
+
+Quota approval does not always guarantee VM allocation.
+
+A deployment can still fail if Azure does not have capacity for that VM size in the selected region at that time.
+
+For workshops:
+
+* request quota early
+* deploy and test several days before the workshop
+* avoid first deployment on the day of the workshop
+* keep a backup region or backup VM size available
+
+For more details refer to:
+
+[https://learn.microsoft.com/en-us/azure/quotas/regional-quota-requests](https://learn.microsoft.com/en-us/azure/quotas/regional-quota-requests)
+
+[https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests](https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests)
 
 
 # Create Variables
