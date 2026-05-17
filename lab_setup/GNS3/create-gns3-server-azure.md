@@ -59,7 +59,7 @@ This approach:
 The following naming conventions are used throughout this guide.
 
 | Object                 | Naming Convention |
-| - | -- |
+| ---------------------- | ----------------- |
 | Resource Group         | `rg-gns3`         |
 | Virtual Machine        | `gns3srv01`       |
 | Username               | `user01`          |
@@ -94,7 +94,7 @@ The following estimates assume:
 * Premium SSD storage
 
 | VM Size             | vCPU | RAM    | Approx Hourly Cost (USD) | Approx 24hr Compute Cost (USD) |
-| - | - |  |  |  |
+| ------------------- | ---- | ------ | ------------------------ | ------------------------------ |
 | `Standard_D48s_v4`  | 48   | 192 GB | ~$4.60/hr                | ~$110                          |
 | `Standard_D48as_v5` | 48   | 192 GB | ~$4.80/hr                | ~$115                          |
 | `Standard_D48as_v6` | 48   | 192 GB | ~$5.20-5.60/hr           | ~$125-135                      |
@@ -103,7 +103,7 @@ The following estimates assume:
 Additional costs typically include:
 
 | Item                | Approximate Cost   |
-| - |  |
+| ------------------- | ------------------ |
 | Premium SSD storage | ~$5-15             |
 | Public IP address   | <$1                |
 | Network traffic     | Usually negligible |
@@ -111,7 +111,7 @@ Additional costs typically include:
 Estimated total workshop cost:
 
 | VM         | Approximate Total Workshop Cost |
-| - | - |
+| ---------- | ------------------------------- |
 | `D48s_v4`  | ~$120-130                       |
 | `D48as_v5` | ~$125-140                       |
 | `D48as_v6` | ~$140-160                       |
@@ -206,7 +206,7 @@ Azure quota is applied per subscription and per region.
 There are two quota types to check:
 
 | Quota Type           | Purpose                                        |
-| -- | - |
+| -------------------- | ---------------------------------------------- |
 | Total Regional vCPUs | Maximum total vCPUs allowed in the region      |
 | VM Family vCPUs      | Maximum vCPUs allowed for a specific VM family |
 
@@ -235,7 +235,7 @@ Example output:
 
 ```text
 Name                                CurrentValue    Limit
--  --  -
+----------------------------------  --------------  -------
 Total Regional vCPUs                0               10
 Standard DSv4 Family vCPUs          0               0
 ```
@@ -272,7 +272,7 @@ In the Azure Portal:
 Recommended quota request:
 
 | Quota                       | Recommended Value |
-|  | -- |
+| --------------------------- | ----------------- |
 | Total Regional vCPUs        | 64                |
 | Standard DSv4 Family vCPUs  | 64                |
 | Standard EASv5 Family vCPUs | 64                |
@@ -289,7 +289,7 @@ Requesting 64 vCPU provides enough capacity for:
 Quota and VM availability can vary by region.
 
 | Region             | Purpose                              |
-|  |  |
+| ------------------ | ------------------------------------ |
 | `southeastasia`    | Primary Asia Pacific workshop region |
 | `australiaeast`    | Backup region                        |
 | `eastasia`         | Backup region                        |
@@ -586,7 +586,7 @@ free -h
 Expected approximate values:
 
 | Resource | Expected |
-| -- | -- |
+| -------- | -------- |
 | vCPU     | 48       |
 | RAM      | ~192 GB  |
 
@@ -597,7 +597,7 @@ Expected approximate values:
 Recommended locations:
 
 | Purpose          | Location             |
-| - | -- |
+| ---------------- | -------------------- |
 | GNS3 projects    | `/opt/gns3/projects` |
 | CSR qcow2 images | `/opt/gns3/images`   |
 | Packet captures  | `/opt/gns3/captures` |
@@ -619,7 +619,7 @@ CSR1000v routers consume significant RAM and CPU resources.
 Approximate sizing:
 
 | Resource        | Approximate Usage |
-|  | -- |
+| --------------- | ----------------- |
 | RAM per router  | 3-4 GB            |
 | vCPU per router | 1                 |
 
@@ -867,7 +867,7 @@ For most temporary workshop environments, the following is usually sufficient:
 ## Workshop security recommendations
 
 | Component                | Recommendation          |
-|  | -- |
+| ------------------------ | ----------------------- |
 | SSH                      | Restrict to trusted IPs |
 | GNS3 TCP/3080            | Restrict to trusted IPs |
 | Student access           | Use a jumphost          |
@@ -995,7 +995,7 @@ ssh -f -N -L 5011:127.0.0.1:5011 user01@203.0.113.44
 Options:
 
 | Option | Purpose                |
-|  | - |
+| ------ | ---------------------- |
 | `-f`   | Run in background      |
 | `-N`   | Do not execute a shell |
 
@@ -1086,7 +1086,7 @@ Verify:
 * VM running state
 * local outbound firewall rules
 
-
+---
 
 ## References
 
