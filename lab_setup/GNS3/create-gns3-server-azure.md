@@ -1093,6 +1093,6 @@ Verify:
 * Azure VM documentation: [https://learn.microsoft.com/en-us/azure/virtual-machines/](https://learn.microsoft.com/en-us/azure/virtual-machines/)
 * Azure CLI documentation: [https://learn.microsoft.com/en-us/cli/azure/](https://learn.microsoft.com/en-us/cli/azure/)
 * GNS3 documentation: [https://docs.gns3.com/](https://docs.gns3.com/)
-* Azure D-Series documentation: [https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series](https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series)
+* Azure D-Series documentation: [https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dsv4-series](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dsv4-series)
 * OpenSSH Port Forwarding Documentation: [https://man.openbsd.org/ssh#TCP_FORWARDING](https://man.openbsd.org/ssh#TCP_FORWARDING)
 * Remotely access GNS3 via the Web Client: [https://gns3.com/here-is-a-step-by-step-guide-remotely-access-gns3-via-the-web-client](https://gns3.com/here-is-a-step-by-step-guide-remotely-access-gns3-via-the-web-client)
