@@ -2,120 +2,177 @@
 
 ## Overview
 
-This guide explains how to deploy a temporary GNS3 server on Microsoft Azure for workshop and training environments.
+This guide explains how to deploy a temporary GNS3 server on Microsoft Azure for workshop, training, and lab environments.
 
 The environment is designed for:
 
-- Network operator workshops
-- GNS3 routing labs
-- Temporary cloud-based training environments
-- Remote workshop access
-- Repeatable workshop infrastructure deployment
+* Network operator workshops
+* GNS3 routing labs
+* Temporary cloud-based training environments
+* Remote workshop access
+* Repeatable infrastructure deployment
 
-The guide uses:
+This guide uses:
 
-- Microsoft Azure Cloud Shell
-- Azure CLI
-- Ubuntu 24.04 LTS
-- Standard_D48s_v4 virtual machine
-- Native GNS3 server installation
+* Microsoft Azure Cloud Shell
+* Azure CLI
+* Ubuntu 24.04 LTS
+* `Standard_D48s_v4` virtual machine
+* Native GNS3 server installation
 
-This guide assumes basic Linux and Azure familiarity.
+The document assumes basic familiarity with:
 
-# Estimated Workshop Cost
+* Linux command-line administration
+* SSH access
+* Microsoft Azure concepts
+* GNS3 operations
 
-The following estimates are approximate only and may change depending on Azure pricing, region, storage selection, and bandwidth usage.
 
-At the time of writing, the Standard_D48s_v4 instance provides:
 
-- 48 vCPU
-- 192 GB RAM
-- AMD EPYC Rome (7002) CPUs
-- Premium SSD support
+## Recommended architecture
+
+The following architecture is recommended for temporary workshop deployments:
+
+```text
+Laptop
+  |
+SSH Tunnel
+  |
+Azure NSG
+  |
+GNS3 Server
+  |
+CSR1000v Routers
+```
+
+This approach:
+
+* minimises public exposure
+* encrypts management traffic
+* avoids exposing telnet console ports publicly
+* simplifies firewall configuration
+
+
+
+## Naming conventions
+
+The following naming conventions are used throughout this guide.
+
+| Object                 | Naming Convention |
+| - | -- |
+| Resource Group         | `rg-gns3`         |
+| Virtual Machine        | `gns3srv01`       |
+| Username               | `user01`          |
+| Network Security Group | `gns3srv01NSG`    |
+
+
+
+## Estimated workshop cost
+
+> [!IMPORTANT]
+> Azure pricing changes regularly. All pricing estimates are approximate only and depend on:
+>
+> * Azure region
+> * storage type
+> * VM generation
+> * network traffic
+> * workshop duration
+
+At the time of writing, the `Standard_D48s_v4` instance provides:
+
+* 48 vCPU
+* 192 GB RAM
+* AMD EPYC Rome (7002) CPUs
+* Premium SSD support
 
 The following estimates assume:
 
-- 3 day workshop
-- Approximately 8 hours runtime per day
-- Total runtime approximately 24 hours
-- Ubuntu Linux VM
-- Premium SSD storage
+* a three-day workshop
+* approximately eight hours runtime per day
+* approximately 24 hours total runtime
+* Ubuntu Linux
+* Premium SSD storage
 
-| VM Size | vCPU | RAM | Approx Hourly Cost (USD) | Approx 24hr Compute Cost (USD) |
-|---|---|---|---|---|
-| Standard_D48s_v4 | 48 | 192 GB | ~$4.60/hr | ~$110 |
-| Standard_D48as_v5 | 48 | 192 GB | ~$4.80/hr | ~$115 |
-| Standard_D48as_v6 | 48 | 192 GB | ~$5.20-5.60/hr | ~$125-135 |
-| Standard_D48as_v7 | 48 | 192 GB | ~$5.80-6.50/hr | ~$140-156 |
+| VM Size             | vCPU | RAM    | Approx Hourly Cost (USD) | Approx 24hr Compute Cost (USD) |
+| - | - |  |  |  |
+| `Standard_D48s_v4`  | 48   | 192 GB | ~$4.60/hr                | ~$110                          |
+| `Standard_D48as_v5` | 48   | 192 GB | ~$4.80/hr                | ~$115                          |
+| `Standard_D48as_v6` | 48   | 192 GB | ~$5.20-5.60/hr           | ~$125-135                      |
+| `Standard_D48as_v7` | 48   | 192 GB | ~$5.80-6.50/hr           | ~$140-156                      |
 
-Additional storage and networking costs are typically:
+Additional costs typically include:
 
-| Item | Approx Cost |
-|---|---|
-| Premium SSD storage | ~$5-15 |
-| Public IP | <$1 |
-| Network traffic | Usually negligible |
+| Item                | Approximate Cost   |
+| - |  |
+| Premium SSD storage | ~$5-15             |
+| Public IP address   | <$1                |
+| Network traffic     | Usually negligible |
 
 Estimated total workshop cost:
 
-| VM | Approx Total Workshop Cost |
-|---|---|
-| D48s_v4 | ~$120-130 |
-| D48as_v5 | ~$125-140 |
-| D48as_v6 | ~$140-160 |
-| D48as_v7 | ~$155-180 |
+| VM         | Approximate Total Workshop Cost |
+| - | - |
+| `D48s_v4`  | ~$120-130                       |
+| `D48as_v5` | ~$125-140                       |
+| `D48as_v6` | ~$140-160                       |
+| `D48as_v7` | ~$155-180                       |
 
-The Standard_D48s_v4 provides a good balance between cost and performance for large CSR1000v based workshop environments.
+The `Standard_D48s_v4` provides a good balance between cost and performance for large CSR1000v workshop environments.
 
-### Recommended deployment process:
+### Recommended deployment process
 
-1. Deploy Azure VM
-2. Install GNS3 server
+1. Deploy the Azure VM
+2. Install the GNS3 server
 3. Upload router images
-4. Import topology
-5. Test startup
-6. Configure jumphost
-7. Provide student access
-8. Deallocate after workshop
+4. Import the topology
+5. Test startup behaviour
+6. Configure the jumphost
+7. Provide participant access
+8. Deallocate the VM after the workshop
 
 
 
-# Launch Azure Cloud Shell
+## Launch Azure Cloud Shell
 
-Login to:
+Log in to the Azure Portal:
 
-https://portal.azure.com
+* [https://portal.azure.com](https://portal.azure.com)
 
-Launch Cloud Shell from the Azure Portal.
+Launch Azure Cloud Shell from the portal.
 
 Select:
 
-- Bash
+* Bash
 
-The Azure CLI is already installed in Cloud Shell.
+The Azure CLI is pre-installed in Cloud Shell.
 
 
-# Azure Region Selection
 
-List Azure locations:
+## Select an Azure region
+
+List Azure regions:
 
 ```bash
-az account list-locations --query '[].{Location:displayName,Name:name}' --output table | sort
+az account list-locations \
+  --query '[].{Location:displayName,Name:name}' \
+  --output table | sort
 ```
 
 Common nearby regions include:
 
-- southeastasia (Singapore)
-- eastasia (Hong Kong)
-- australiaeast (Sydney)
-- australiasoutheast (Melbourne)
-- southafricanorth (Johannesburg)
+* `southeastasia` (Singapore)
+* `eastasia` (Hong Kong)
+* `australiaeast` (Sydney)
+* `australiasoutheast` (Melbourne)
+* `southafricanorth` (Johannesburg)
 
 For Asia Pacific workshops, Singapore is commonly used.
 
-# Check VM Availability
 
-The following command checks available D48as_v5 SKUs:
+
+## Check VM availability
+
+The following command checks available `D48s_v4` SKUs:
 
 ```bash
 az vm list-skus \
@@ -130,38 +187,35 @@ az vm list-skus \
   -o table
 ```
 
-Note:
+> [!NOTE]
+> This command can take several minutes to complete.
 
-This command can take several minutes to complete.
 
-# Check Azure Quotas Before Deployment
+
+## Check Azure quotas before deployment
 
 Large Azure virtual machines require sufficient vCPU quota in the selected region.
 
-This is important because a Standard_D48s_v4 VM requires:
+This is important because a `Standard_D48s_v4` VM requires:
 
 * 48 vCPU
 * 192 GB RAM
 
-Azure quota is applied per subscription and per region. A subscription may have enough quota in one region but not in another.
+Azure quota is applied per subscription and per region.
 
 There are two quota types to check:
 
 | Quota Type           | Purpose                                        |
-| -------------------- | ---------------------------------------------- |
+| -- | - |
 | Total Regional vCPUs | Maximum total vCPUs allowed in the region      |
 | VM Family vCPUs      | Maximum vCPUs allowed for a specific VM family |
 
-For the Standard_D48s_v4 VM, check:
+For the `Standard_D48s_v4` VM, check:
 
 * Total Regional vCPUs
 * Standard DSv4 Family vCPUs
 
-
-
-## Check Current Quota
-
-Run:
+### Check current quota
 
 ```bash
 az vm list-usage \
@@ -169,7 +223,7 @@ az vm list-usage \
   -o table
 ```
 
-Or to view just the Standard_D48s_v4 and Standard_D48as_v5
+Or display only relevant VM families:
 
 ```bash
 az vm list-usage \
@@ -181,22 +235,20 @@ Example output:
 
 ```text
 Name                                CurrentValue    Limit
-----------------------------------  --------------  -------
+-  --  -
 Total Regional vCPUs                0               10
-Standard DSv4 Family vCPUs         0               0
+Standard DSv4 Family vCPUs          0               0
 ```
 
-In this example, the subscription cannot deploy a Standard_D48s_v4 VM because:
+In this example, the subscription cannot deploy a `Standard_D48s_v4` VM because:
 
 * the regional quota is only 10 vCPU
-* the D48s_v4 VM requires 48 vCPU
+* the VM requires 48 vCPU
 * the DSv4 family quota is 0 vCPU
 
+### Example quota error
 
-
-## Example Quota Error
-
-If quota is insufficient, VM creation may fail with an error similar to:
+If quota is insufficient, deployment may fail with an error similar to:
 
 ```text
 QuotaExceeded
@@ -207,76 +259,62 @@ Additional Required: 48
 Minimum New Limit Required: 48
 ```
 
-This means Azure has blocked the deployment because the requested VM would exceed the approved vCPU quota for that region.
-
-
-
-## Request a Quota Increase
+### Request a quota increase
 
 In the Azure Portal:
 
-1. Search for Quotas
-2. Select Compute
-3. Filter by region, for example southeastasia
-4. Request an increase for Total Regional vCPUs
-5. Request an increase for Standard DSv4 Family vCPUs
+1. Search for `Quotas`
+2. Select `Compute`
+3. Filter by region
+4. Request an increase for `Total Regional vCPUs`
+5. Request an increase for `Standard DSv4 Family vCPUs`
 
 Recommended quota request:
 
 | Quota                       | Recommended Value |
-| --------------------------- | ----------------- |
+|  | -- |
 | Total Regional vCPUs        | 64                |
-| Standard DSv4 Family vCPUs | 64                |
+| Standard DSv4 Family vCPUs  | 64                |
 | Standard EASv5 Family vCPUs | 64                |
 
-Requesting 64 vCPU provides enough quota for:
+Requesting 64 vCPU provides enough capacity for:
 
-* one Standard_D48s_v4 GNS3 server
-* one small jumphost
-* rebuild or testing overhead
+* one large GNS3 server
+* one jumphost
+* testing overhead
+* temporary rebuild capacity
 
-If planning to test memory optimised E-series VMs later, also request EASv5 quota.
+### Recommended backup regions
 
+Quota and VM availability can vary by region.
 
+| Region             | Purpose                              |
+|  |  |
+| `southeastasia`    | Primary Asia Pacific workshop region |
+| `australiaeast`    | Backup region                        |
+| `eastasia`         | Backup region                        |
+| `southafricanorth` | Africa workshop region               |
 
-## Recommended Backup Regions
+> [!IMPORTANT]
+> Quota approval does not guarantee VM allocation.
+>
+> Azure deployments can still fail if the selected region does not currently have sufficient capacity for the requested VM size.
 
-Quota and capacity can vary by region.
-
-Recommended approach:
-
-| Region           | Purpose                              |
-| ---------------- | ------------------------------------ |
-| southeastasia    | Primary Asia Pacific workshop region |
-| australiaeast    | Backup region                        |
-| eastasia         | Backup region                        |
-| southafricanorth | Africa workshop region               |
-
-If the primary region does not have available quota or capacity, repeat the quota check in a backup region.
-
-
-
-## Important Notes
-
-Quota approval does not always guarantee VM allocation.
-
-A deployment can still fail if Azure does not have capacity for that VM size in the selected region at that time.
-
-For workshops:
+For workshop deployments:
 
 * request quota early
-* deploy and test several days before the workshop
-* avoid first deployment on the day of the workshop
-* keep a backup region or backup VM size available
+* test the deployment several days before the workshop
+* avoid first deployment on the workshop day
+* maintain a backup region or VM size
 
-For more details refer to:
+For additional information:
 
-[https://learn.microsoft.com/en-us/azure/quotas/regional-quota-requests](https://learn.microsoft.com/en-us/azure/quotas/regional-quota-requests)
+* [https://learn.microsoft.com/en-us/azure/quotas/regional-quota-requests](https://learn.microsoft.com/en-us/azure/quotas/regional-quota-requests)
+* [https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests](https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests)
 
-[https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests](https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests)
 
 
-# Create Variables
+## Create deployment variables
 
 Create deployment variables:
 
@@ -290,9 +328,14 @@ IMAGE="Ubuntu2404"
 PASSWORD='ChangeMe123!'
 ```
 
+> [!WARNING]
+> Avoid using weak passwords in production or publicly accessible environments.
+>
+> SSH key authentication is strongly recommended.
 
 
-# Create Resource Group
+
+## Create the resource group
 
 ```bash
 az group create \
@@ -300,9 +343,17 @@ az group create \
   --location "$LOCATION"
 ```
 
+Validate resource group creation:
+
+```bash
+az group show \
+  --name "$RG" \
+  -o table
+```
 
 
-# Create the GNS3 Server VM
+
+## Create the GNS3 server VM
 
 ```bash
 az vm create \
@@ -312,14 +363,23 @@ az vm create \
   --size "$SIZE" \
   --admin-username "$USER" \
   --authentication-type password \
-  --admin-password "$PASSWORD" \
+  --admin-password "$PASSWORD"
 ```
 
-The deployment process can take several minutes.
+> [!NOTE]
+> The deployment process can take several minutes.
+
+Validate VM creation:
+
+```bash
+az vm list \
+  --resource-group "$RG" \
+  -o table
+```
 
 
 
-# Restrict SSH Access
+## Restrict SSH access
 
 Determine your public IP address:
 
@@ -333,7 +393,7 @@ Example:
 203.0.113.44
 ```
 
-Update the Network Security Group:
+Restrict SSH access to your public IP:
 
 ```bash
 az network nsg rule update \
@@ -343,7 +403,7 @@ az network nsg rule update \
   --source-address-prefixes 203.0.113.44/32
 ```
 
-If required, restore access from any IP:
+If required, restore SSH access from any IP:
 
 ```bash
 az network nsg rule update \
@@ -353,9 +413,12 @@ az network nsg rule update \
   --source-address-prefixes '*'
 ```
 
+> [!WARNING]
+> Avoid leaving SSH open to `0.0.0.0/0` unless operationally necessary.
 
 
-# Retrieve the Public IP Address
+
+## Retrieve the public IP address
 
 ```bash
 az vm list-ip-addresses \
@@ -366,23 +429,32 @@ az vm list-ip-addresses \
 
 
 
-# Connect via SSH
+## Connect via SSH
 
 ```bash
 ssh user01@PUBLIC_IP
 ```
 
+Validate connectivity:
+
+```bash
+hostname
+whoami
+```
 
 
-# Update Ubuntu
+
+## Update Ubuntu
 
 ```bash
 sudo apt update && sudo apt dist-upgrade -y && sudo apt -y autoremove
 ```
 
-During installation the install will stop for user confimation to allow non-root access to ubridge and wireshark. Use debconf-set-selections before installation.
+During installation, the package installer prompts for confirmation to allow non-root access to `ubridge` and `wireshark`.
 
-## Preseed ubridge
+To automate these prompts, use `debconf-set-selections` before installation.
+
+### Preseed ubridge
 
 ```bash
 echo "ubridge ubridge/install-setuid boolean true" | sudo debconf-set-selections
@@ -390,10 +462,12 @@ echo "ubridge ubridge/install-setuid boolean true" | sudo debconf-set-selections
 
 This automatically answers:
 
-Should non-superusers be able to run GNS3? <br>
+```text
+Should non-superusers be able to run GNS3?
 YES
+```
 
-## Preseed Wireshark
+### Preseed Wireshark
 
 ```bash
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
@@ -401,17 +475,23 @@ echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debc
 
 This automatically answers:
 
-Should non-superusers be able to capture packets? <br>
+```text
+Should non-superusers be able to capture packets?
 YES
+```
 
-# Add the software repo for GNS3 Server
+
+
+## Add the GNS3 repository
 
 ```bash
 sudo add-apt-repository ppa:gns3/ppa -y
 sudo apt update
 ```
 
-# Install GNS3 Server Dependencies
+
+
+## Install GNS3 server dependencies
 
 ```bash
 sudo apt install -y \
@@ -428,7 +508,9 @@ sudo apt install -y \
   wget
 ```
 
-# Verify KVM Support
+
+
+## Verify KVM support
 
 ```bash
 sudo kvm-ok
@@ -440,14 +522,23 @@ Expected output:
 KVM acceleration can be used
 ```
 
-# Install GNS3 Server
+
+
+## Install the GNS3 server
 
 ```bash
 sudo apt install -y gns3-server gns3-gui
 ```
 
+Validate installation:
 
-# Enable Services
+```bash
+gns3server --version
+```
+
+
+
+## Enable required services
 
 ```bash
 sudo systemctl enable libvirtd
@@ -457,17 +548,32 @@ sudo systemctl enable docker
 sudo systemctl start docker
 ```
 
+Validate service status:
+
+```bash
+sudo systemctl status libvirtd
+sudo systemctl status docker
+```
 
 
-# Configure User Permissions
+
+## Configure user permissions
 
 ```bash
 sudo usermod -aG ubridge,wireshark,libvirt,kvm,docker "$USER"
 ```
 
-Logout and reconnect via SSH after applying group permissions.
+Log out and reconnect via SSH after applying group permissions.
 
-# Verify CPU and RAM
+Verify group membership:
+
+```bash
+id
+```
+
+
+
+## Verify CPU and RAM
 
 ```bash
 lscpu
@@ -480,22 +586,22 @@ free -h
 Expected approximate values:
 
 | Resource | Expected |
-|---|---|
-| vCPU | 48 |
-| RAM | ~192 GB |
+| -- | -- |
+| vCPU     | 48       |
+| RAM      | ~192 GB  |
 
 
 
-# Recommended Storage Layout
+## Recommended storage layout
 
 Recommended locations:
 
-| Purpose | Location |
-|---|---|
-| GNS3 projects | /opt/gns3/projects |
-| CSR qcow2 images | /opt/gns3/images |
-| Packet captures | /opt/gns3/captures |
-| Temporary files | /tmp |
+| Purpose          | Location             |
+| - | -- |
+| GNS3 projects    | `/opt/gns3/projects` |
+| CSR qcow2 images | `/opt/gns3/images`   |
+| Packet captures  | `/opt/gns3/captures` |
+| Temporary files  | `/tmp`               |
 
 Example:
 
@@ -506,61 +612,38 @@ sudo chown -R $USER:$USER /opt/gns3
 
 
 
-# Recommended CSR1000v Notes
+## CSR1000v sizing guidance
 
 CSR1000v routers consume significant RAM and CPU resources.
 
 Approximate sizing:
 
-| Resource | Approximate Usage |
-|---|---|
-| RAM per router | 3-4 GB |
-| vCPU per router | 1 |
+| Resource        | Approximate Usage |
+|  | -- |
+| RAM per router  | 3-4 GB            |
+| vCPU per router | 1                 |
 
-A Standard_D48s_v4 instance should comfortably support approximately:
+A `Standard_D48s_v4` instance should comfortably support approximately:
 
-- 40-50 CSR1000v routers
+* 40-50 CSR1000v routers
 
-depending on topology complexity and lab activity.
+Actual capacity depends on:
 
-
-# Deallocate the VM After the Workshop
-
-Important:
-
-Stopping Ubuntu does not stop Azure billing.
-
-To stop compute billing:
-
-```bash
-az vm deallocate \
-  --resource-group "$RG" \
-  --name "$VM"
-```
-
-To restart:
-
-```bash
-az vm start \
-  --resource-group "$RG" \
-  --name "$VM"
-```
+* topology complexity
+* routing convergence
+* traffic generation
+* packet captures
+* active services
 
 
 
-# Delete the Entire Environment
+## Enable access to the GNS3 server
 
-```bash
-az group delete --name "$RG"
-```
+### Create a systemd service
 
-# Enable accesss to GNS3 server and import a project
+The Ubuntu GNS3 packages install `gns3server`, but they do not always create a `gns3.service` systemd unit.
 
-## Step 1 — Enable the GNS3 Server
-
-The Ubuntu GNS3 packages install `gns3server`, but they do **not always create a `gns3.service` systemd unit**.
-
-Check the binary:
+Verify the binary:
 
 ```bash
 which gns3server
@@ -590,28 +673,33 @@ WantedBy=multi-user.target
 EOF
 ```
 
-Then enable and start it:
+Enable and start the service:
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable gns3
 sudo systemctl start gns3
+```
+
+Validate service status:
+
+```bash
 sudo systemctl status gns3
 ```
 
-Check logs if it fails:
+If the service fails:
 
 ```bash
 journalctl -u gns3 -n 50 --no-pager
 ```
 
-You should also restrict Azure NSG access to port `3080` to your public IP only.
 
-## Step 2 — Open Port 3080 in Azure
 
-Allow GNS3 server access:
+## Configure Azure NSG access for GNS3
 
-```bash id="nl9n94"
+Allow GNS3 access on TCP port `3080`:
+
+```bash
 az network nsg rule create \
   --resource-group "$RG" \
   --nsg-name "${VM}NSG" \
@@ -626,61 +714,61 @@ az network nsg rule create \
 
 Replace:
 
-* `YOUR_PUBLIC_IP` with your real IP.
+* `YOUR_PUBLIC_IP` with your public IP address
 
-## Step 3 — Access GNS3 Server via Browser
 
-By default the standalone `gns3server` process:
 
-* does not enable authentication
-* does not use HTTPS
-* listens openly on the configured interface
-* exposes the REST API and web UI directly.
+## Security considerations
 
-You can access the GNS3 Server via:
+> [!WARNING]
+> By default, the standalone `gns3server` process:
+>
+> * does not enable authentication
+> * does not use HTTPS
+> * exposes the REST API publicly
+> * can allow appliance uploads and remote control
+>
+> Restrict access carefully.
+
+The following URL exposes the GNS3 web UI:
 
 ```text
 http://YOUR_PUBLIC_IP:3080/static/web-ui/server/1/projects
 ```
 
-The service file:
+The following configuration:
 
 ```ini
 ExecStart=/usr/bin/gns3server --host 0.0.0.0 --port 3080
 ```
 
-explicitly tells GNS3 to:
+causes the GNS3 server to:
 
 * listen on all interfaces
-* expose the server publicly.
+* expose the service publicly
 
-So anyone who can reach TCP/3080 can:
+Any user able to reach TCP port `3080` may be able to:
 
-* connect
 * upload projects
 * control routers
 * access captures
-* potentially execute commands via appliances.
+* interact with appliances
+* potentially execute arbitrary code
 
-This is normal GNS3 behaviour unless authentication is configured.
+### Recommended protection model
 
-For workshop infrastructure this is dangerous if:
-
-* NSG permits `0.0.0.0/0`
-* public Internet can reach port 3080.
-
-## Restrict Azure NSG (currently restricted to SSH)
-
-Allow only:
+Restrict access to:
 
 * your public IP
-* workshop jump host IP.
+* a workshop jumphost
+* trusted management systems
 
-NOT:
+Avoid:
 
-* all Internet access.
+* unrestricted public access
+* `0.0.0.0/0` source ranges
 
-Example:
+Restrict access using Azure NSG rules:
 
 ```bash
 az network nsg rule update \
@@ -690,14 +778,17 @@ az network nsg rule update \
   --source-address-prefixes YOUR_IP/32
 ```
 
-This is the most important protection.
+Restricting NSG access is the primary security control for temporary workshop deployments.
 
 
-## A Better Architecture for GNS3 Server access
 
-Instead of exposing GNS3 publicly:
+## Recommended SSH tunnel access model
 
-```text 
+SSH tunnelling provides a more secure operational model than exposing GNS3 publicly.
+
+Example:
+
+```text
 Laptop
   ->
 SSH tunnel
@@ -705,33 +796,32 @@ SSH tunnel
 Azure GNS3 Server
 ```
 
-Much safer, to use SSH tunnel.
+Create an SSH tunnel:
 
-Example:
-
-```bash 
+```bash
 ssh -L 3080:localhost:3080 user01@SERVER_IP
 ```
 
-Then locally connect GNS3 GUI to:
+Then connect locally to:
 
-```text 
+```text
 localhost:3080
 ```
 
-Now:
+Benefits:
 
-* no public 3080 exposure
+* no public TCP/3080 exposure
 * encrypted transport
-* authentication handled by SSH.
+* SSH authentication
+* simpler firewall policy
 
-This is the best operational model.
 
-### GNS3 Authentication Support
+
+## Enable optional GNS3 authentication
 
 You can enable authentication in:
 
-```text 
+```text
 /home/user01/.config/GNS3/2.2/gns3_server.conf
 ```
 
@@ -746,124 +836,110 @@ user = admin
 password = StrongPassword123!
 ```
 
-Then restart:
+Restart the service:
 
-```bash 
+```bash
 sudo systemctl restart gns3
 ```
 
-However:
-
-* many operators still rely primarily on firewall restrictions
-* because workshop credentials become operationally annoying.
+> [!NOTE]
+> Many workshop operators rely primarily on firewall restrictions because centrally managed workshop credentials can become operationally difficult.
 
 
-### HTTPS Support
 
-GNS3 itself does not provide strong production-grade HTTPS handling.
+## HTTPS considerations
 
-If needed:
+GNS3 does not provide strong production-grade HTTPS support.
 
-* use nginx reverse proxy
-* TLS termination
-* HTTP auth.
+If HTTPS is required:
 
-But for workshops:
+* deploy an nginx reverse proxy
+* use TLS termination
+* implement HTTP authentication
 
-* NSG restriction
-* SSH tunnel
+For most temporary workshop environments, the following is usually sufficient:
 
-is usually sufficient.
+* Azure NSG restriction
+* SSH tunnelling
 
-### Important Workshop Recommendation
 
-For Azure environment it is strongly recommended:
 
-| Component                | Recommendation             |
-| ------------------------ | -------------------------- |
-| SSH                      | Restricted IPs             |
-| GNS3 3080                | Restricted to your IP only |
-| Student access           | Via jumphost               |
-| Authentication           | Optional                   |
-| Public Internet exposure | Avoid                      |
+## Workshop security recommendations
 
-Remember:
+| Component                | Recommendation          |
+|  | -- |
+| SSH                      | Restrict to trusted IPs |
+| GNS3 TCP/3080            | Restrict to trusted IPs |
+| Student access           | Use a jumphost          |
+| Authentication           | Optional                |
+| Public Internet exposure | Avoid                   |
 
-* uploaded appliance templates
-* Docker containers
-* QEMU images
+> [!WARNING]
+> Uploaded appliance templates, Docker containers, and QEMU images may execute arbitrary code on the GNS3 server.
+>
+> Avoid exposing GNS3 publicly without firewall restrictions.
 
-can potentially execute arbitrary code on the GNS3 server.
 
-*So exposing GNS3 publicly without restriction is risky.*
 
-# How to telnet to routers
+## Telnet access via SSH tunnel
 
-You can use telnet via a SSH tunnel:
+You can securely access router console ports through SSH tunnelling.
 
-* remote GNS3 telnet console ports
-* through SSH port 22
-* to local ports on your laptop.
+This avoids exposing large numbers of telnet ports publicly.
 
-This avoids exposing:
+Example assumptions:
 
-* hundreds of telnet ports
-* publicly on Azure.
+* Azure VM public IP: `203.0.113.44`
+* GNS3 router console port: `5011`
 
-Suppose:
+Create an SSH tunnel:
 
-* Azure VM public IP = `203.0.113.44`
-* GNS3 router console port = `5011`
-
-Create SSH tunnel:
-
-```bash 
+```bash
 ssh -L 5011:127.0.0.1:5011 user01@203.0.113.44
 ```
 
-Now your local machine gets:
+Your local system now has:
 
-```text 
+```text
 localhost:5011
 ```
 
-which forwards securely to:
+which securely forwards traffic to:
 
 ```text
 AzureVM:5011
 ```
 
-## Connect via Telnet Locally
+### Connect locally via telnet
 
-After tunnel established:
+After the tunnel is established:
 
 ```bash
 telnet localhost 5011
 ```
 
-Ensure to use:
+Use:
 
 ```text
 127.0.0.1
 ```
 
-on the remote side.
+on the remote side rather than:
 
-NOT:
+* a public IP
+* `0.0.0.0`
 
-* public IP
-* 0.0.0.0
-
-because GNS3/Dynamips/QEMU usually bind locally.
+because GNS3, Dynamips, and QEMU commonly bind locally.
 
 
-## Multiple Console Ports
 
-You can tunnel many ports simultaneously.
+## Tunnel multiple console ports
+
+You can tunnel multiple ports simultaneously.
 
 Example:
 
-```bash 
+```bash
 ssh \
   -L 5001:127.0.0.1:5001 \
   -L 5002:127.0.0.1:5002 \
@@ -872,9 +948,11 @@ ssh \
   user01@203.0.113.44
 ```
 
-## [Optional] Use SSH Config
 
-On your laptop:
+
+## Optional SSH configuration
+
+Edit your SSH configuration:
 
 ```bash
 nano ~/.ssh/config
@@ -882,7 +960,7 @@ nano ~/.ssh/config
 
 Example:
 
-```sshconfig 
+```sshconfig
 Host gns3lab
     HostName 203.0.113.44
     User user01
@@ -893,43 +971,128 @@ Host gns3lab
     LocalForward 5012 127.0.0.1:5012
 ```
 
-Then simply:
+Then connect using:
 
-```bash 
+```bash
 ssh gns3lab
 ```
 
-
-This means:
+Benefits:
 
 * only SSH port 22 exposed publicly
-* all telnet traffic encrypted
-* no public telnet ports
-* much cleaner NSG rules.
+* encrypted telnet traffic
+* cleaner NSG rules
+* simplified operational management
 
 
-## Background SSH Tunnel
 
-```bash 
+## Background SSH tunnel
+
+```bash
 ssh -f -N -L 5011:127.0.0.1:5011 user01@203.0.113.44
 ```
 
 Options:
 
-* `-f` = background
-* `-N` = no shell
+| Option | Purpose                |
+|  | - |
+| `-f`   | Run in background      |
+| `-N`   | Do not execute a shell |
 
-Useful for persistent tunnels.
+This approach is useful for persistent console tunnels.
 
 
----
+
+## Deallocate the VM after the workshop
+
+> [!IMPORTANT]
+> Stopping Ubuntu does not stop Azure compute billing.
+>
+> Use `az vm deallocate` to stop VM charges.
+
+Deallocate the VM:
+
+```bash
+az vm deallocate \
+  --resource-group "$RG" \
+  --name "$VM"
+```
+
+Restart the VM:
+
+```bash
+az vm start \
+  --resource-group "$RG" \
+  --name "$VM"
+```
+
+
+
+## Delete the environment
+
+Delete the complete Azure resource group:
+
+```bash
+az group delete --name "$RG"
+```
+
+
+
+## Troubleshooting
+
+### GNS3 service fails to start
+
+Check service status:
+
+```bash
+sudo systemctl status gns3
+```
+
+Check logs:
+
+```bash
+journalctl -u gns3 -n 50 --no-pager
+```
+
+### KVM acceleration unavailable
+
+Verify KVM support:
+
+```bash
+sudo kvm-ok
+```
+
+### Unable to access TCP/3080
+
+Verify:
+
+* Azure NSG rules
+* local firewall configuration
+* `gns3server` service status
+* listening sockets
+
+Check listening sockets:
+
+```bash
+ss -tulpn | grep 3080
+```
+
+### SSH connectivity issues
+
+Verify:
+
+* NSG source IP restrictions
+* public IP address
+* VM running state
+* local outbound firewall rules
+
+
 
 ## References
 
-- Azure VM documentation: https://learn.microsoft.com/en-us/azure/virtual-machines/
-- Azure CLI documentation: https://learn.microsoft.com/en-us/cli/azure/
-- GNS3 documentation: https://docs.gns3.com/
-- Azure D-Series documentation: https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series
-- [OpenSSH Port Forwarding Documentation](https://man.openbsd.org/ssh#TCP_FORWARDING)
-- [GNS3 Remote Server Documentation](https://docs.gns3.com/docs/using-gns3/administration/gns3-server/)
-
+* Azure VM documentation: [https://learn.microsoft.com/en-us/azure/virtual-machines/](https://learn.microsoft.com/en-us/azure/virtual-machines/)
+* Azure CLI documentation: [https://learn.microsoft.com/en-us/cli/azure/](https://learn.microsoft.com/en-us/cli/azure/)
+* GNS3 documentation: [https://docs.gns3.com/](https://docs.gns3.com/)
+* Azure D-Series documentation: [https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series](https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series)
+* OpenSSH Port Forwarding Documentation: [https://man.openbsd.org/ssh#TCP_FORWARDING](https://man.openbsd.org/ssh#TCP_FORWARDING)
+* GNS3 Remote Server Documentation: [https://docs.gns3.com/docs/using-gns3/administration/gns3-server/](https://docs.gns3.com/docs/using-gns3/administration/gns3-server/)
