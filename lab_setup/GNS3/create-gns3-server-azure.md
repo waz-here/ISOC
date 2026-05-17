@@ -1095,4 +1095,4 @@ Verify:
 * GNS3 documentation: [https://docs.gns3.com/](https://docs.gns3.com/)
 * Azure D-Series documentation: [https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series](https://learn.microsoft.com/en-us/azure/virtual-machines/dasv5-dadsv5-series)
 * OpenSSH Port Forwarding Documentation: [https://man.openbsd.org/ssh#TCP_FORWARDING](https://man.openbsd.org/ssh#TCP_FORWARDING)
-* GNS3 Remote Server Documentation: [https://docs.gns3.com/docs/using-gns3/administration/gns3-server/](https://docs.gns3.com/docs/using-gns3/administration/gns3-server/)
+* Remotely access GNS3 via the Web Client: [https://gns3.com/here-is-a-step-by-step-guide-remotely-access-gns3-via-the-web-client](https://gns3.com/here-is-a-step-by-step-guide-remotely-access-gns3-via-the-web-client)
