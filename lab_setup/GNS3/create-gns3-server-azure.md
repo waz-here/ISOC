@@ -380,7 +380,7 @@ ssh user01@PUBLIC_IP
 sudo apt update && sudo apt dist-upgrade -y && sudo apt -y autoremove
 ```
 
-During installation there install will stop for user confimation to all non-root access to ubridge and wireshark. Use debconf-set-selections before installation.
+During installation the install will stop for user confimation to allow non-root access to ubridge and wireshark. Use debconf-set-selections before installation.
 
 ## Preseed ubridge
 
@@ -404,6 +404,13 @@ This automatically answers:
 Should non-superusers be able to capture packets? <br>
 YES
 
+# Add the software repo for GNS3 Server
+
+```bash
+sudo add-apt-repository ppa:gns3/ppa -y
+sudo apt update
+```
+
 # Install GNS3 Server Dependencies
 
 ```bash
@@ -421,8 +428,6 @@ sudo apt install -y \
   wget
 ```
 
-
-
 # Verify KVM Support
 
 ```bash
@@ -435,16 +440,11 @@ Expected output:
 KVM acceleration can be used
 ```
 
-
-
 # Install GNS3 Server
 
 ```bash
-sudo add-apt-repository ppa:gns3/ppa -y
-sudo apt update
 sudo apt install -y gns3-server gns3-gui
 ```
-
 
 
 # Enable Services
@@ -462,15 +462,10 @@ sudo systemctl start docker
 # Configure User Permissions
 
 ```bash
-sudo usermod -aG libvirt $USER
-sudo usermod -aG kvm $USER
-sudo usermod -aG docker $USER
-sudo usermod -aG ubridge $USER
+sudo usermod -aG ubridge,wireshark,libvirt,kvm,docker "$USER"
 ```
 
 Logout and reconnect via SSH after applying group permissions.
-
-
 
 # Verify CPU and RAM
 
