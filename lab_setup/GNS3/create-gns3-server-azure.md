@@ -169,6 +169,14 @@ az vm list-usage \
   -o table
 ```
 
+Or to view just the Standard_D48as_v4 and Standard_D48as_v5
+
+```bash
+az vm list-usage \
+  --location southeastasia \
+  -o table | grep -Ei "Name|Total |DASv4|DASv5"
+```
+
 Example output:
 
 ```text
