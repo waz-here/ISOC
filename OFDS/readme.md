@@ -1,6 +1,6 @@
 # Google Earth for Network Engineers
 
-A 60-minute introductory lab for using Google Earth Pro to map terrestrial network infrastructure.
+An introductory lab for using Google Earth to map terrestrial network infrastructure.
 
 This lab is designed for network engineers, Internet infrastructure practitioners, IXP operators, regulators, and technical community members who need a lightweight way to visualise fibre routes, nodes, towers, exchanges, cable landing stations, and physical diversity.
 
