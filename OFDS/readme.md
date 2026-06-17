@@ -26,7 +26,7 @@ Participants should have basic familiarity with networks, fibre routes, POPs, to
 
 - Google Earth Pro for Desktop
 - A text editor
-- Optional: GitHub account for publishing lab outputs
+
 
 ## Suggested session plan
 
@@ -45,8 +45,8 @@ Participants should have basic familiarity with networks, fibre routes, POPs, to
 ```text
 .
 ├── README.md
-├── labs/
-│   └── 01-google-earth-network-mapping.md
+├── 01-google-earth-network-mapping.md
+│   
 ├── data/
 │   └── sample-network-sites.csv
 └── images/
