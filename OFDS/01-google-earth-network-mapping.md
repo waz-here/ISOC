@@ -226,17 +226,6 @@ If working with Open Fibre Data Standard data, a useful workflow is:
 4. Use Google Earth for visual review and stakeholder discussion.
 5. Use GIS tools for deeper analysis, validation, and spatial joins.
 
-## Instructor notes
-
-Keep the session practical. The aim is to give participants confidence, not to teach full GIS.
-
-Recommended emphasis:
-
-- Use placemarks for network nodes.
-- Use paths for fibre or microwave links.
-- Use polygons only where there is a clear service area, risk zone, or boundary.
-- Encourage participants to label assumptions.
-- Reinforce that Google Earth is a visual planning and communication tool, not a formal engineering design system.
 
 ## Checklist
 
