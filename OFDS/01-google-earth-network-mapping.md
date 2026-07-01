@@ -1,9 +1,5 @@
 # Lab 01: Mapping Terrestrial Networks with Google Earth Pro
 
-## Session length
-
-60 minutes
-
 ## Purpose
 
 This lab introduces Google Earth Pro as a simple visual mapping tool for terrestrial network infrastructure.
@@ -238,3 +234,7 @@ Participants should finish with:
 - [ ] Elevation profile reviewed for one path
 - [ ] KML or KMZ file exported
 - [ ] One limitation or uncertainty documented
+
+## References
+
+- Mapping Basics Within Google Earth Pro: https://cartong.pages.gitlab.cartong.org/learning-corner/assets/pdfs/toolbox9/6_2_1_Google_Earth/2022_Tutoriel_GoogleEarthPro_CartONG_EN.pdf
