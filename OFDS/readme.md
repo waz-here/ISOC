@@ -1,6 +1,6 @@
-# Google Earth for Network Engineers
+# Mapping Terrestrial Networks for Network Engineers
 
-An introductory lab for using Google Earth to map terrestrial network infrastructure.
+An introductory lab for using Google Earth, QGIS and OFDS to map terrestrial network infrastructure.
 
 This lab is designed for network engineers, Internet infrastructure practitioners, IXP operators, regulators, and technical community members who need a lightweight way to visualise fibre routes, nodes, towers, exchanges, cable landing stations, and physical diversity.
 
@@ -26,6 +26,7 @@ Participants should have basic familiarity with networks, fibre routes, POPs, to
 
 - Google Earth Pro for Desktop
 - A text editor
+- QGIS 
 
 
 ## Suggested session plan
