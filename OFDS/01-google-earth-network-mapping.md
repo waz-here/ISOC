@@ -238,4 +238,4 @@ Participants should finish with:
 ## References
 
 - Mapping Basics Within Google Earth Pro: https://cartong.pages.gitlab.cartong.org/learning-corner/assets/pdfs/toolbox9/6_2_1_Google_Earth/2022_Tutoriel_GoogleEarthPro_CartONG_EN.pdf
-- Send feedback KML Tutorial: https://developers.google.com/kml/documentation/kml_tut
+- KML Tutorial: https://developers.google.com/kml/documentation/kml_tut
