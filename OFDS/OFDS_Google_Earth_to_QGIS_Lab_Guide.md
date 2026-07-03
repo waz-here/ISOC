@@ -1,4 +1,4 @@
-# Lab Guide: Converting Fibre Maps to OFDS Using Google Earth and QGIS 3.44 LTR (macOS)
+# Lab Guide: Converting Fibre Maps to OFDS Using Google Earth and QGIS 3.44 LTR 
 
 ## Overview
 
@@ -14,9 +14,9 @@ This lab demonstrates how to:
 ## Prerequisites
 
 - Google Earth Pro
-- QGIS 3.44 LTR (macOS)
+- QGIS 3.44 LTR 
 - OFDS Studio plugin
-- Fibre map PDF or image
+- Fibre map PDF or image https://github.com/stevesong/OFDS-datasets
 - KML2OFDS converter
 
 Resources:
