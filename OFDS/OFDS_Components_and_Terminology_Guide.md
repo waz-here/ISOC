@@ -153,6 +153,6 @@ This mapping is often the easiest way for new users to understand OFDS.
 
 ## Useful References
 
-Official OFDS documentation: https://standard.ofds.info/
-OFDS project site: https://ofds.info/en/
-Internet Society overview: https://www.internetsociety.org/blog/2025/04/the-open-fibre-data-standard/
+- Official OFDS documentation: https://standard.ofds.info/
+- OFDS project site: https://ofds.info/en/
+- Internet Society overview: https://www.internetsociety.org/blog/2025/04/the-open-fibre-data-standard/
