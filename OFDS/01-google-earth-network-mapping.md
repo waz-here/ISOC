@@ -33,8 +33,6 @@ Save any exported files into this folder.
 
 ## Part 1: Open Google Earth Pro and navigate
 
-Time: 5 minutes
-
 1. Open Google Earth Pro.
 2. Search for your first city, exchange, IXP, data centre, or network location.
 3. Practise zooming, rotating, and tilting the view.
@@ -46,8 +44,6 @@ Time: 5 minutes
 For network mapping, a top-down view is usually better for route drawing and measurement. Tilted views can be useful for understanding terrain, valleys, hills, and line-of-sight issues.
 
 ## Part 2: Add network site placemarks
-
-Time: 10 minutes
 
 Create at least three placemarks.
 
@@ -86,8 +82,6 @@ Notes: Candidate site for route diversity review
 
 ## Part 3: Draw a terrestrial fibre route
 
-Time: 15 minutes
-
 Create a path between two or more placemarks.
 
 1. Click the path tool.
@@ -119,8 +113,6 @@ As you draw the path, consider:
 
 ## Part 4: Measure path distance
 
-Time: 10 minutes
-
 Use the ruler or saved path measurement tools to estimate route distance.
 
 Record the following:
@@ -135,8 +127,6 @@ Record the following:
 Google Earth measurements are useful for planning and discussion, but they should be treated as estimates. They are not a substitute for survey-grade engineering measurements.
 
 ## Part 5: View an elevation profile
-
-Time: 10 minutes
 
 For one route:
 
@@ -166,8 +156,6 @@ Elevation profiles are useful for:
 They do not replace detailed radio planning, Fresnel zone analysis, LiDAR, or engineering survey work.
 
 ## Part 6: Save and export the project
-
-Time: 10 minutes
 
 Organise your work in the Places panel.
 
@@ -199,8 +187,6 @@ network-mapping-lab.kml
 Use KMZ when you want a compact package. Use KML when you want a plain text file that can be inspected, edited, or version controlled.
 
 ## Wrap-up discussion
-
-Time: 5 minutes
 
 Discuss:
 
