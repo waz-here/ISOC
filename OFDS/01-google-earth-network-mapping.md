@@ -223,6 +223,8 @@ Participants should finish with:
 
 ## References
 
+- Getting to know Google Earth: https://earth.google.com/intl/ar/userguide/v4/index.htm
 - Mapping Basics Within Google Earth Pro: https://cartong.pages.gitlab.cartong.org/learning-corner/assets/pdfs/toolbox9/6_2_1_Google_Earth/2022_Tutoriel_GoogleEarthPro_CartONG_EN.pdf
-- Google Earth Tutorial - Part 1: https://docs.google.com/document/d/1yUw4J81IeCcV9zHlipny-IfmSvHA3LmFcC0ioiE54Ds/edit?tab=t.0#heading=h.q2a70u2e5j81
+- Google Earth Tutorial - Part 1: https://storymaps.arcgis.com/stories/903c4e3e13ae4141aeba2615e9b2ce89 and https://docs.google.com/document/d/1yUw4J81IeCcV9zHlipny-IfmSvHA3LmFcC0ioiE54Ds/edit?tab=t.0#heading=h.q2a70u2e5j81
+- An Introduction to Google Earth Pro: https://virginiaview.cnre.vt.edu/wp-content/uploads/2020/07/smGoogle-Earth-Pro-Manual.pdf
 - KML Tutorial: https://developers.google.com/kml/documentation/kml_tut
