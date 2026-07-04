@@ -224,4 +224,5 @@ Participants should finish with:
 ## References
 
 - Mapping Basics Within Google Earth Pro: https://cartong.pages.gitlab.cartong.org/learning-corner/assets/pdfs/toolbox9/6_2_1_Google_Earth/2022_Tutoriel_GoogleEarthPro_CartONG_EN.pdf
+- Google Earth Tutorial - Part 1: https://docs.google.com/document/d/1yUw4J81IeCcV9zHlipny-IfmSvHA3LmFcC0ioiE54Ds/edit?tab=t.0#heading=h.q2a70u2e5j81
 - KML Tutorial: https://developers.google.com/kml/documentation/kml_tut
