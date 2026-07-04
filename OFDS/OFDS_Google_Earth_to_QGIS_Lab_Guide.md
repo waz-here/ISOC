@@ -249,3 +249,8 @@ Update:
 | Plugin errors | Create the GeoPackage before adding background layers |
 | Geometry problems | Use the Vertex Tool to refine routes |
 
+
+## References
+
+- NZNOG OFDS presentation - https://youtu.be/zHCJov9WM-c?t=3422
+- Introduction to Open Fibre Data Standard tools - https://www.youtube.com/watch?v=WVOz8_AR_X0
