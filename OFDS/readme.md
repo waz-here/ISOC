@@ -47,11 +47,14 @@ Participants should have basic familiarity with networks, fibre routes, POPs, to
 .
 ├── README.md
 ├── 01-google-earth-network-mapping.md
+├── OFDS-Google-Fu-Workshop-Guide.md
+├── OFDS_Components_and_Terminology_Guide.md
+├── OFDS_Google_Earth_to_QGIS_Lab_Guide.md
+├── qgis-change-project-crs-for-ofds.md
+├── qgis-google-basemap.md
 │   
-├── data/
-│   └── sample-network-sites.csv
 └── images/
-    └── README.md
+    └── change-project-crs.png
 ```
 
 ## Official references
