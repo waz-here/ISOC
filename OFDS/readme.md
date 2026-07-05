@@ -63,3 +63,4 @@ Participants should have basic familiarity with networks, fibre routes, POPs, to
 - Google Earth Outreach training: https://www.google.com/earth/outreach/learn/
 - Google Earth Help, measure distance and elevation: https://support.google.com/earth/answer/148134
 - Google Earth Help, measure distances and areas: https://support.google.com/earth/answer/9010337
+- QGIS: https://www.qgis.org/
