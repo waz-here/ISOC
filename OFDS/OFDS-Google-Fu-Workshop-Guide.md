@@ -141,13 +141,13 @@ Try:
 ## Search Pages Rather Than Files
 
 ```text
-site:operator.com.au infrastructure
+site:operator.com.au intitle:infrastructure
 ```
 
 ## Search Old Material
 
 ```text
-site:operator.com.au fibre pdf
+site:operator.com.au before:2022 fibre pdf
 ```
 
 Older maps are often easier to locate.
