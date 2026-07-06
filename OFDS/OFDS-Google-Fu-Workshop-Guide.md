@@ -532,3 +532,8 @@ filetype:pdf fibre network
 # Conclusion
 
 Good OFDS mapping starts with good discovery. The ability to locate public network information quickly and efficiently is a foundational skill for researchers, operators, regulators, Internet Society chapters and NOG communities. Mastering these search techniques dramatically increases the amount and quality of information available for conversion into OFDS datasets.
+
+## References
+
+- Google Advanced Search: https://www.google.com/advanced_search
+- Master the Art of Google Fu with Search Tips & Tricks: https://iocreative.com/blog/master-the-art-of-google-fu-with-search-tips-tricks/
