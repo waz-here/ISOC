@@ -104,7 +104,8 @@ When creating a new OFDS project:
 1. Create a new QGIS project.
 2. Change the Project CRS to **EPSG:4326**.
 3. Save the project.
-4. Create a new OFDS GeoJSON file.
+4. Create a new OFDS GeoPackage file using the 'plus' icon of the OFDS Studio plugin. <img width="26" height="27" alt="image" src="https://github.com/user-attachments/assets/5eb21f33-c269-4e82-8f17-ef745751b323" />
+
 5. Add background map layers such as Google Road Map or OpenStreetMap.
 6. Begin digitising infrastructure features.
 
