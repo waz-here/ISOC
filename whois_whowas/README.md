@@ -1,4 +1,4 @@
-# Investigating an IXP or potential peer from Ubuntu 24.04
+# Investigating an IXP or potential peer using Ubuntu 24.04
 
 A reproducible command-line guide using the Papua New Guinea Internet Exchange Point (PNG-IXP) as an example. We use **PeeringDB** for interconnection directory information, **APNIC WHOIS** for current address registration, and **APNIC Whowas** (historical Registration Data Access Protocol, or RDAP) for historical registration changes.
 
